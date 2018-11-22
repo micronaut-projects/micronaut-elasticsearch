@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        maven { url "https://repo.grails.org/grails/core" }
+        maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
+
+ext {
+    bomExclude = true
+}
+
+dependencies {
+    testCompile project(":elasticsearch")
+    testCompile "io.micronaut:micronaut-inject-groovy:$micronautVersion"
+    testCompile "io.micronaut:micronaut-inject-java:$micronautVersion"
+    testCompile "io.micronaut:micronaut-management:$micronautVersion"
+
+    // tag::testcontainers-dependencies[]
+    testCompile "org.testcontainers:spock:1.8.0"
+    testCompile "org.testcontainers:elasticsearch:1.10.1"
+    // end::testcontainers-dependencies[]
+
+    testRuntime "ch.qos.logback:logback-classic:1.2.3"
+}

@@ -1,4 +1,4 @@
 introduction:
   title: Introduction
 configuration: Configuration
-endpoint: Endpoint
+healthChecks: Health Checks

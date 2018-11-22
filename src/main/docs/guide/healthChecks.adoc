@@ -1,0 +1,5 @@
+When the `elasticsearch` module is activated a api:configuration.elasticsearch.health.ElasticsearchHealthIndicator[] is activated resulting in the `/health` endpoint and api:health.CurrentHealthStatus[] interface resolving the health of the Elasticsearch cluster.
+
+The only configuration option supported is to enable or disable the indicator by the `endpoints.health.elasticsearch.enabled` key.
+
+See the section on the https://docs.micronaut.io/latest/guide/index.html#healthEndpoint[Health Endpoint] for more information.
