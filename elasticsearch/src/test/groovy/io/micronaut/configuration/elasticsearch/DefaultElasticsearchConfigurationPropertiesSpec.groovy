@@ -33,7 +33,7 @@ import spock.lang.Specification
 import javax.inject.Singleton
 
 /**
- * @author puneetbehl
+ * @author Puneet Behl
  * @since 1.1.0
  */
 class DefaultElasticsearchConfigurationPropertiesSpec extends Specification {

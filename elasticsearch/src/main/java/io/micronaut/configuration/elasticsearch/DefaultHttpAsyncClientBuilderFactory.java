@@ -27,7 +27,7 @@ import javax.inject.Singleton;
 /**
  * The default factory used to create {@link HttpAsyncClientBuilder} for HTTP client configurations.
  *
- * @author puneetbehl
+ * @author Puneet Behl
  * @since 1.1.0
  */
 @Requires(classes = {RestHighLevelClient.class})

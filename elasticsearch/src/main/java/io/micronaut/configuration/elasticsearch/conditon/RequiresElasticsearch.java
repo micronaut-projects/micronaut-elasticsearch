@@ -25,7 +25,7 @@ import java.lang.annotation.*;
 /**
  * Meta annotation for Elasticsearch that can be added to any component that requires Elasticsearch to load.
  *
- * @author puneetbehl
+ * @author Puneet Behl
  * @since 1.1.0
  */
 @Documented

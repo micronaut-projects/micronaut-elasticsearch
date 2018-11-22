@@ -42,8 +42,8 @@ import javax.inject.Singleton
 //tag::singletonImports[]
 //end::singletonImports[]
 /**
- * @author puneetbehl
- * @since 1.0
+ * @author Puneet Behl
+ * @since 1.1.0
  */
 class ElasticsearchSpec extends Specification {
 

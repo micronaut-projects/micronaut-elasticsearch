@@ -17,7 +17,7 @@
 /**
  * Elasticsearch Client condition.
  *
- * @author puneetbehl
+ * @author Puneet Behl
  * @since 1.1.0
  */
 

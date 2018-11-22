@@ -31,7 +31,7 @@ import org.testcontainers.shaded.org.apache.http.impl.client.BasicCredentialsPro
 import spock.lang.Specification
 
 /**
- * @author puneetbehl
+ * @author Puneet Behl
  * @since 1.1.0
  */
 class ElasticsearchHealthIndicatorSpec extends Specification {

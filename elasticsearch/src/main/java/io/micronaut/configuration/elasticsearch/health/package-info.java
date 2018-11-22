@@ -17,8 +17,8 @@
 /**
  * Reactive Pg Client heath indicator.
  *
- * @author puneetbehl
- * @since 1.0
+ * @author Puneet Behl
+ * @since 1.1.0
  */
 package io.micronaut.configuration.elasticsearch.health;
 
