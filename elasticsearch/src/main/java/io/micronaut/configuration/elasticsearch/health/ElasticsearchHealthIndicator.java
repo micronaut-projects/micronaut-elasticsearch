@@ -42,7 +42,7 @@ import static java.util.Collections.emptyMap;
  * A  {@link HealthIndicator} for Elasticsearch High Level REST client.
  *
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Requires(beans = HealthEndpoint.class)
 @Requires(property = HealthEndpoint.PREFIX + ".elasticsearch.rest.high.level.enabled", notEquals = "false")

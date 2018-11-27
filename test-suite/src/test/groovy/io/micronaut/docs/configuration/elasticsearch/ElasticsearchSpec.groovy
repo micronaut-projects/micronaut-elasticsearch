@@ -43,7 +43,7 @@ import javax.inject.Singleton
 //end::singletonImports[]
 /**
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 class ElasticsearchSpec extends Specification {
 

@@ -32,7 +32,7 @@ import spock.lang.Specification
 
 /**
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 class ElasticsearchHealthIndicatorSpec extends Specification {
 

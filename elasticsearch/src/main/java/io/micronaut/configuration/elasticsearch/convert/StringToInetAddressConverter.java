@@ -32,7 +32,7 @@ import java.util.Optional;
  * Converts String to {@link InetAddress}.
  *
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Singleton
 @Requires(classes = RestClientBuilder.class)

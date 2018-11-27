@@ -34,7 +34,7 @@ import javax.inject.Singleton
 
 /**
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 class DefaultElasticsearchConfigurationPropertiesSpec extends Specification {
 

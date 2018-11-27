@@ -28,7 +28,7 @@ import org.elasticsearch.client.RestHighLevelClient;
  *
  * @author lishuai
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Requires(beans = DefaultElasticsearchConfigurationProperties.class)
 @Factory

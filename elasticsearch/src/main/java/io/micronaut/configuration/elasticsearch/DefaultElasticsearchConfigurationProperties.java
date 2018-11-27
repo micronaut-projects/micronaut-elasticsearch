@@ -36,7 +36,7 @@ import static io.micronaut.configuration.elasticsearch.ElasticsearchSettings.DEF
  *
  * @author lishuai
  * @author Puneet Behl
- * @since 1.1.0
+ * @since 1.0.0
  */
 @Requires(classes = RestClientBuilder.class)
 @ConfigurationProperties(ElasticsearchSettings.PREFIX)
