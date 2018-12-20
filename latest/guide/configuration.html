@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Configuration 1.0.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        Elasticsearch configuration
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>2</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/healthChecks.html"><strong>3</strong><span>Health Checks</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/healthChecks.html"><strong>3</strong><span>Health Checks</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>2 Configuration</h1>
+
+                    <p><strong>Version:</strong> 1.0.0</p>
+                </div>
+
+                
+
+                
+
+<h1 id="configuration">2 Configuration</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-configuration-elasticsearch/edit/master/src/main/docs/guide/configuration.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect1">
+<h2 id="_configuring_the_elasticsearch_client">Configuring the Elasticsearch Client</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Using the CLI</div>
+<div class="paragraph">
+<p>If you are creating your project using the Micronaut CLI, supply the <code>elasticsearch</code> feature to configure the Elasticsearch Java REST Client in your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mn create-app my-app --features elasticsearch</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To configure the Elasticsearch Java REST Client you should first add <code>elasticsearch</code> module to your classpath:</p>
+</div>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">compile "io.micronaut.configuration:micronaut-elasticsearch"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should then configure the <code>httpHosts</code> of the Elasticsearch server you wish to communicate with in <code>application.yml</code> as:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml" data-lang="yaml">elasticsearch:
+	httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the API for api:configuration.mongo.reactive.DefaultElasticsearchConfigurationProperties[] for more information on the available configuration options.</p>
+</div>
+<div class="paragraph">
+<p>Once you have the above configuration in place then you can inject the <code>org.elasticsearch.client.RestHighLevelClient</code> or <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the High Level REST Client:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">MainResponse response =
+        client.info(RequestOptions.DEFAULT) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>client</code> is an instance of the <code>org.elasticsearch.client.RestHighLevelClient</code> bean.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information on executing different operations using Elasticsearch High Level REST Client please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank">Elasticsearch Documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modify_the_default_request_configurations">Modify the Default Request Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Often times you want to change the default configurations. To achieve this Micronaut, includes the ability to change the default request configurations. You can set the default request configurations under key <code>elasticsearch.request.default</code> as:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml" data-lang="yaml">elasticsearch:
+	httpHosts: http://localhost:9200,http://127.0.0.2:9200
+	request:
+		default:
+			expectContinueEnabled: true
+			localAddress: 198.57.151.22</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the API <a href="https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html" target="_blank">RequestConfig.Builder</a> for more information on the available configuration options.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modify_the_http_client_configurations">Modify the HTTP Client Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank">HttpAsyncClientBuilder</a> allows to set). You can define a bean using api:io.micronaut.context.annotation.Factory[] which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>Following is an example to change the default credentials provider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">import io.micronaut.context.annotation.Replaces
+import org.apache.http.auth.AuthScope
+
+@Factory
+static class HttpAsyncClientBuilderFactory {
+
+    @Replaces(HttpAsyncClientBuilder.class)
+    @Singleton
+    HttpAsyncClientBuilder builder() {
+        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
+        credentialsProvider.setCredentials(AuthScope.ANY,
+                new UsernamePasswordCredentials("user", "password"))
+
+        return HttpAsyncClientBuilder.create()
+                .setDefaultCredentialsProvider(credentialsProvider)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/healthChecks.html"><strong>3</strong><span>Health Checks</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
