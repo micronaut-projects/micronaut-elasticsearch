@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>2 Configuration 1.0.0.BUILD-SNAPSHOT</title>
+    <title>2 Configuration 1.0.1.BUILD-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -69,7 +69,7 @@ function addJsClass() {
                 <div class="project">
                     <h1>2 Configuration</h1>
 
-                    <p><strong>Version:</strong> 1.0.0.BUILD-SNAPSHOT</p>
+                    <p><strong>Version:</strong> 1.0.1.BUILD-SNAPSHOT</p>
                 </div>
 
                 
@@ -114,7 +114,7 @@ function addJsClass() {
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">compile "io.micronaut.configuration:micronaut-elasticsearch"</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.configuration:micronaut-elasticsearch"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -123,19 +123,19 @@ function addJsClass() {
 <div class="listingblock">
 <div class="title">application.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml" data-lang="yaml">elasticsearch:
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
 	httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See the API for api:configuration.mongo.reactive.DefaultElasticsearchConfigurationProperties[] for more information on the available configuration options.</p>
+<p>See the API for <a href="../api/io/micronaut/configuration/mongo/reactive/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
 </div>
 <div class="paragraph">
 <p>Once you have the above configuration in place then you can inject the <code>org.elasticsearch.client.RestHighLevelClient</code> or <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the High Level REST Client:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">MainResponse response =
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">MainResponse response =
         client.info(RequestOptions.DEFAULT) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
@@ -148,7 +148,7 @@ function addJsClass() {
 </table>
 </div>
 <div class="paragraph">
-<p>For more information on executing different operations using Elasticsearch High Level REST Client please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank">Elasticsearch Documentation</a>.</p>
+<p>For more information on executing different operations using Elasticsearch High Level REST Client please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">Elasticsearch Documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -161,7 +161,7 @@ function addJsClass() {
 <div class="listingblock">
 <div class="title">application.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml" data-lang="yaml">elasticsearch:
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
 	httpHosts: http://localhost:9200,http://127.0.0.2:9200
 	request:
 		default:
@@ -170,7 +170,7 @@ function addJsClass() {
 </div>
 </div>
 <div class="paragraph">
-<p>See the API <a href="https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html" target="_blank">RequestConfig.Builder</a> for more information on the available configuration options.</p>
+<p>See the API <a href="https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html" target="_blank" rel="noopener">RequestConfig.Builder</a> for more information on the available configuration options.</p>
 </div>
 </div>
 </div>
@@ -178,14 +178,14 @@ function addJsClass() {
 <h2 id="_modify_the_http_client_configurations">Modify the HTTP Client Configurations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank">HttpAsyncClientBuilder</a> allows to set). You can define a bean using api:io.micronaut.context.annotation.Factory[] which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
+<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank" rel="noopener">HttpAsyncClientBuilder</a> allows to set). You can define a bean using <a href="../api/io/micronaut/context/annotation/Factory.html">Factory</a> which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
 </div>
 <div class="paragraph">
 <p>Following is an example to change the default credentials provider:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">import io.micronaut.context.annotation.Replaces
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.context.annotation.Replaces
 import org.apache.http.auth.AuthScope
 
 @Factory
