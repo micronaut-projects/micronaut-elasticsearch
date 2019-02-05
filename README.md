@@ -1,6 +1,6 @@
 # Micronaut Elasticsearch Configuration
 
-[![Build Status](https://travis-ci.org/micronaut-projects/micronaut-configuration-elasticsearch.svg?branch=master)](https://travis-ci.org/micronaut-projects/micronaut-configuration-elasticsearch)
+[![Build Status](https://travis-ci.org/micronaut-projects/micronaut-elasticsearch.svg?branch=master)](https://travis-ci.org/micronaut-projects/micronaut-elasticsearch)
 
 This is a configuration for using Elasticsearch in Micronaut applications.
 
