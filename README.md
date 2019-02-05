@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/micronaut-projects/micronaut-elasticsearch.svg?branch=master)](https://travis-ci.org/micronaut-projects/micronaut-elasticsearch)
 
-This is a configuration for using Elasticsearch in Micronaut applications.
+This project includes integration between [Micronaut](http://micronaut.io) and [Elasticsearch](https://www.elastic.co).
 
-See the [User Guide](https://micronaut-projects.github.io/micronaut-configuration-elasticsearch/latest/guide/index.html) for
-more information about how to use the project.
+## Documentation ##
 
+See the [Documentation](https://micronaut-projects.github.io/micronaut-elasticsearch/latest/guide/index.html) for more information.
