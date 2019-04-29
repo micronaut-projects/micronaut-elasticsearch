@@ -44,7 +44,7 @@ class ElasticsearchMappingSpec extends Specification {
     void "Test Elasticsearch connection"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:6.4.1")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.0.0")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
@@ -60,17 +60,17 @@ class ElasticsearchMappingSpec extends Specification {
         container.stop()
     }
 
-    void "Test Elasticsearch(6.x) Mapping API"() {
+    void "Test Elasticsearch(7.x) Mapping API"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:6.4.1")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.0.0")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
         RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
 
-        expect: "Make sure the version of ES is 6.4.1 because these tests may cause unexpected results"
-        client.info(RequestOptions.DEFAULT).getVersion().equals(Version.fromString("6.4.1"))
+        expect: "Make sure the version of ES is 7.0.0 because these tests may cause unexpected results"
+        client.info(RequestOptions.DEFAULT).getVersion().equals(Version.fromString("7.0.0"))
 
         when:
         GetIndexRequest getIndexRequest = new GetIndexRequest().indices("posts")
