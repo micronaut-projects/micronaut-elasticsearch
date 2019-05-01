@@ -49,9 +49,6 @@ if [[ $EXIT_STATUS -eq 0 ]]; then
       ./gradlew --stop
       if [[ -n $TRAVIS_TAG ]]; then
           ./gradlew bintrayUpload --no-daemon --stacktrace || EXIT_STATUS=$?
-#          if [[ $EXIT_STATUS -eq 0 ]]; then
-#            ./gradlew synchronizeWithMavenCentral --no-daemon
-#          fi
       else
           ./gradlew publish --no-daemon --stacktrace || EXIT_STATUS=$?
       fi
@@ -59,7 +56,7 @@ if [[ $EXIT_STATUS -eq 0 ]]; then
       if [[ $EXIT_STATUS -eq 0 ]]; then
        ./gradlew --console=plain --no-daemon docs  || EXIT_STATUS=$?
 
-        git clone https://${GH_TOKEN}@github.com/micronaut-projects/micronaut-configuration-elasticsearch.git -b gh-pages gh-pages --single-branch > /dev/null
+        git clone https://${GH_TOKEN}@github.com/micronaut-projects/micronaut-elasticsearch.git -b gh-pages gh-pages --single-branch > /dev/null
 
         cd gh-pages
 
