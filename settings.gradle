@@ -1,4 +1,4 @@
-rootProject.name = 'micronaut-configuration-elasticsearch'
+rootProject.name = 'elasticsearch-root'
 
 include 'elasticsearch'
 include 'test-suite'
