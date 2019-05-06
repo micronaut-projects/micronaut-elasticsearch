@@ -1,24 +1,38 @@
-buildscript {
-    repositories {
-        maven { url "https://repo.grails.org/grails/core" }
-        maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-    }
+plugins {
+    id "groovy"
+    id "io.spring.dependency-management"
 }
 
-ext {
-    bomExclude = true
+dependencyManagement {
+    imports {
+        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
+    }
 }
 
 dependencies {
     testCompile project(":elasticsearch")
-    testCompile "io.micronaut:micronaut-inject-groovy:$micronautVersion"
-    testCompile "io.micronaut:micronaut-inject-java:$micronautVersion"
-    testCompile "io.micronaut:micronaut-management:$micronautVersion"
-
+    testCompile "io.micronaut:micronaut-runtime-groovy"
+    testCompile "io.micronaut:micronaut-validation"
+    testCompile "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
+    testCompileOnly "io.micronaut:micronaut-inject-groovy"
     // tag::testcontainers-dependencies[]
     testCompile "org.testcontainers:spock:1.8.0"
     testCompile "org.testcontainers:elasticsearch:1.10.1"
     // end::testcontainers-dependencies[]
 
     testRuntime "ch.qos.logback:logback-classic:1.2.3"
+}
+
+test {
+    jvmArgs '-Duser.country=US'
+    jvmArgs '-Duser.language=en'
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    failFast = true
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.forkOptions.jvmArgs.add('-Dgroovy.parameters=true')
 }
