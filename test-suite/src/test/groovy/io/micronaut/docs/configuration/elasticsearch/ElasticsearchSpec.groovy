@@ -30,9 +30,9 @@ import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
 import org.elasticsearch.Version
-import org.elasticsearch.action.main.MainResponse
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
+import org.elasticsearch.client.core.MainResponse
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 import spock.lang.Shared
 import spock.lang.Specification
@@ -48,7 +48,7 @@ import javax.inject.Singleton
 class ElasticsearchSpec extends Specification {
 
     // tag::es-testcontainer[]
-    @Shared ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.1.0")
+    @Shared ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.2.0")
 
     // end::es-testcontainer[]
 
@@ -72,8 +72,8 @@ class ElasticsearchSpec extends Specification {
         //end::query[]
 
         then:
-        "docker-cluster" == response.getClusterName().value()
-        Version.fromString("7.1.0") == response.getVersion()
+        "docker-cluster" == response.getClusterName()
+        Version.fromString("7.2.0").toString() == response.getVersion().getNumber()
 
         cleanup:
         applicationContext.close()
