@@ -19,16 +19,16 @@ package io.micronaut.configuration.elasticsearch
 import io.micronaut.context.ApplicationContext
 import org.elasticsearch.Version
 import org.elasticsearch.action.DocWriteResponse
-import org.elasticsearch.action.admin.indices.get.GetIndexRequest
 import org.elasticsearch.action.delete.DeleteRequest
 import org.elasticsearch.action.delete.DeleteResponse
 import org.elasticsearch.action.get.GetRequest
 import org.elasticsearch.action.get.GetResponse
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.action.index.IndexResponse
-import org.elasticsearch.action.main.MainResponse
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
+import org.elasticsearch.client.core.MainResponse
+import org.elasticsearch.client.indices.GetIndexRequest
 import org.elasticsearch.common.xcontent.XContentType
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext
 import org.testcontainers.elasticsearch.ElasticsearchContainer
@@ -44,7 +44,7 @@ class ElasticsearchMappingSpec extends Specification {
     void "Test Elasticsearch connection"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.1.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.2.0")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
@@ -53,7 +53,7 @@ class ElasticsearchMappingSpec extends Specification {
         applicationContext.containsBean(RestHighLevelClient)
         applicationContext.getBean(RestHighLevelClient).ping(RequestOptions.DEFAULT)
         MainResponse response = applicationContext.getBean(RestHighLevelClient).info(RequestOptions.DEFAULT)
-        System.out.println(String.format("cluser: %s, node: %s, version: %s, build: %s", response.getClusterName(), response.getNodeName(), response.getVersion(), response.getBuild()))
+        System.out.println(String.format("cluser: %s, node: %s, version: %s", response.getClusterName(), response.getNodeName(), response.getVersion()))
 
         cleanup:
         applicationContext.close()
@@ -63,17 +63,17 @@ class ElasticsearchMappingSpec extends Specification {
     void "Test Elasticsearch(7.x) Mapping API"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.1.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.2.0")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
         RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
 
-        expect: "Make sure the version of ES is 7.1.0 because these tests may cause unexpected results"
-        client.info(RequestOptions.DEFAULT).getVersion().equals(Version.fromString("7.1.0"))
+        expect: "Make sure the version of ES is 7.2.0 because these tests may cause unexpected results"
+        client.info(RequestOptions.DEFAULT).getVersion().getNumber().equals(Version.fromString("7.2.0").toString())
 
         when:
-        GetIndexRequest getIndexRequest = new GetIndexRequest().indices("posts")
+        GetIndexRequest getIndexRequest = new GetIndexRequest("posts")
 
         then: "index does not exists"
         !client.indices().exists(getIndexRequest, RequestOptions.DEFAULT)
@@ -93,7 +93,6 @@ class ElasticsearchMappingSpec extends Specification {
         IndexResponse response = client.index(request, RequestOptions.DEFAULT)
 
         then: "verify version and result"
-        response.getType() == "doc"
         response.getIndex() == "posts"
         response.getVersion() == 1
         response.getResult() == DocWriteResponse.Result.CREATED
@@ -113,7 +112,6 @@ class ElasticsearchMappingSpec extends Specification {
         response = client.index(request, RequestOptions.DEFAULT)
 
         then: "verify version and result"
-        response.getType() == "doc"
         response.getIndex() == "posts"
         response.getVersion() == 2
         response.getResult() == DocWriteResponse.Result.UPDATED
@@ -163,7 +161,6 @@ class ElasticsearchMappingSpec extends Specification {
         DeleteResponse deleteResponse = client.delete(deleteRequest, RequestOptions.DEFAULT)
 
         then:
-        deleteResponse.getType() == "doc"
         deleteResponse.getIndex() == "posts"
 
         cleanup:
