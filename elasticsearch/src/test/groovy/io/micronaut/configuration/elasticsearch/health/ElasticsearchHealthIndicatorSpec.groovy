@@ -38,7 +38,7 @@ class ElasticsearchHealthIndicatorSpec extends Specification {
 
     void "test elasticsearch health indicator"() {
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.2.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.3.2")
         container.start()
 
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
