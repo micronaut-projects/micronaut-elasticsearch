@@ -48,7 +48,7 @@ import javax.inject.Singleton
 class ElasticsearchSpec extends Specification {
 
     // tag::es-testcontainer[]
-    @Shared ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.3.2")
+    @Shared ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.4.0")
 
     // end::es-testcontainer[]
 
@@ -73,7 +73,7 @@ class ElasticsearchSpec extends Specification {
 
         then:
         "docker-cluster" == response.getClusterName()
-        Version.fromString("7.3.2").toString() == response.getVersion().getNumber()
+        Version.fromString("7.4.0").toString() == response.getVersion().getNumber()
 
         cleanup:
         applicationContext.close()
