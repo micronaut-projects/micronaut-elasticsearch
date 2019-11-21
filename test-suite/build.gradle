@@ -17,7 +17,7 @@ dependencies {
     testCompileOnly "io.micronaut:micronaut-inject-groovy"
     // tag::testcontainers-dependencies[]
     testCompile "org.testcontainers:spock:1.8.0"
-    testCompile "org.testcontainers:elasticsearch:1.10.1"
+    testCompile "org.testcontainers:elasticsearch:1.12.3"
     // end::testcontainers-dependencies[]
 
     testRuntime "ch.qos.logback:logback-classic:1.2.3"
