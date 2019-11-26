@@ -124,11 +124,11 @@ function addJsClass() {
 <div class="title">application.yml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
-	httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
+  httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See the API for <a href="../api/io/micronaut/configuration/mongo/reactive/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
+<p>See the API for <a href="../api/io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
 </div>
 <div class="paragraph">
 <p>Once you have the above configuration in place then you can inject the <code>org.elasticsearch.client.RestHighLevelClient</code> or <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the High Level REST Client:</p>
@@ -162,11 +162,11 @@ function addJsClass() {
 <div class="title">application.yml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
-	httpHosts: http://localhost:9200,http://127.0.0.2:9200
-	request:
-		default:
-			expectContinueEnabled: true
-			localAddress: 198.57.151.22</code></pre>
+  httpHosts: http://localhost:9200,http://127.0.0.2:9200
+  request:
+    default:
+      expectContinueEnabled: true
+      localAddress: 198.57.151.22</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -178,7 +178,7 @@ function addJsClass() {
 <h2 id="_modify_the_http_client_configurations">Modify the HTTP Client Configurations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank" rel="noopener">HttpAsyncClientBuilder</a> allows to set). You can define a bean using <a href="../api/io/micronaut/context/annotation/Factory.html">Factory</a> which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
+<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank" rel="noopener">HttpAsyncClientBuilder</a> allows to set). You can define a bean using <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Factory.html">Factory</a> which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
 </div>
 <div class="paragraph">
 <p>Following is an example to change the default credentials provider:</p>
