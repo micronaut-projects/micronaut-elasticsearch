@@ -67,7 +67,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a name="I:C">
+<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a name="I:C">
 <!--   -->
 </a>
 <h2 class="title">C</h2>
@@ -120,7 +120,8 @@
 <dl>
 <dt><a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html" title="class in io.micronaut.configuration.elasticsearch.health"><span class="typeNameLink">ElasticsearchHealthIndicator</span></a> - Class in <a href="io/micronaut/configuration/elasticsearch/health/package-summary.html">io.micronaut.configuration.elasticsearch.health</a></dt>
 <dd>
-<div class="block">A  <code>HealthIndicator</code> for Elasticsearch High Level REST client.</div>
+<div class="block">A <code>HealthIndicator</code> for Elasticsearch that uses an automatically-configured high-level REST client, injected as a dependency, to communicate
+ with Elasticsearch.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html#ElasticsearchHealthIndicator-org.elasticsearch.client.RestHighLevelClient-">ElasticsearchHealthIndicator(RestHighLevelClient)</a></span> - Constructor for class io.micronaut.configuration.elasticsearch.health.<a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html" title="class in io.micronaut.configuration.elasticsearch.health">ElasticsearchHealthIndicator</a></dt>
 <dd>
@@ -173,7 +174,9 @@
 <dt><span class="memberNameLink"><a href="io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html#getRequestConfigBuilder--">getRequestConfigBuilder()</a></span> - Method in class io.micronaut.configuration.elasticsearch.<a href="io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html" title="class in io.micronaut.configuration.elasticsearch">DefaultElasticsearchConfigurationProperties</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html#getResult--">getResult()</a></span> - Method in class io.micronaut.configuration.elasticsearch.health.<a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html" title="class in io.micronaut.configuration.elasticsearch.health">ElasticsearchHealthIndicator</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Tries to call the cluster info API on Elasticsearch to obtain information about the cluster.</div>
+</dd>
 </dl>
 <a name="I:H">
 <!--   -->
@@ -208,14 +211,6 @@
 <dd>
 <div class="block">Reactive Pg Client heath indicator.</div>
 </dd>
-</dl>
-<a name="I:N">
-<!--   -->
-</a>
-<h2 class="title">N</h2>
-<dl>
-<dt><span class="memberNameLink"><a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html#NAME">NAME</a></span> - Static variable in class io.micronaut.configuration.elasticsearch.health.<a href="io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html" title="class in io.micronaut.configuration.elasticsearch.health">ElasticsearchHealthIndicator</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <a name="I:P">
 <!--   -->
@@ -283,7 +278,7 @@
 <dt><span class="memberNameLink"><a href="io/micronaut/configuration/elasticsearch/convert/StringToNodeSelectorConverter.html#StringToNodeSelectorConverter--">StringToNodeSelectorConverter()</a></span> - Constructor for class io.micronaut.configuration.elasticsearch.convert.<a href="io/micronaut/configuration/elasticsearch/convert/StringToNodeSelectorConverter.html" title="class in io.micronaut.configuration.elasticsearch.convert">StringToNodeSelectorConverter</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;</div>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->
