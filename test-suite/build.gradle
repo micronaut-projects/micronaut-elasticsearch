@@ -3,16 +3,15 @@ plugins {
 }
 
 dependencies {
-    testCompile project(":elasticsearch")
-    testCompile "io.micronaut:micronaut-runtime-groovy"
-    testCompile "io.micronaut:micronaut-validation"
-    testCompile "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
+    testImplementation project(":elasticsearch")
+    testImplementation "io.micronaut:micronaut-runtime-groovy"
+    testImplementation "io.micronaut:micronaut-validation"
+    testImplementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
     testCompileOnly "io.micronaut:micronaut-inject-groovy"
     // tag::testcontainers-dependencies[]
-    testCompile "org.testcontainers:spock:1.12.4"
-    testCompile "org.testcontainers:elasticsearch:1.12.4"
+    testImplementation "org.testcontainers:spock:1.12.4"
+    testImplementation "org.testcontainers:elasticsearch:1.12.4"
     // end::testcontainers-dependencies[]
-
     testRuntime "ch.qos.logback:logback-classic:1.2.3"
 }
 
