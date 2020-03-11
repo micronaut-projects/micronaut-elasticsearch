@@ -2,3 +2,4 @@ introduction:
   title: Introduction
 configuration: Configuration
 healthChecks: Health Checks
+repository: Repository
