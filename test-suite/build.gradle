@@ -1,12 +1,5 @@
 plugins {
     id "groovy"
-    id "io.spring.dependency-management"
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
-    }
 }
 
 dependencies {
