@@ -102,7 +102,19 @@ activated resulting in the <code>/health</code> endpoint and <a href="https://do
 interface resolving the health of the Elasticsearch cluster.</p>
 </div>
 <div class="paragraph">
-<p>The only configuration option supported is to enable or disable the indicator by the <code>endpoints.health.elasticsearch.enabled</code> key.</p>
+<p>The only configuration option supported is to enable or disable the indicator.</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
+  health:
+    elasticsearch:
+      rest:
+        high:
+          level:
+            enabled: false</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>See the section on the <a href="https://docs.micronaut.io/latest/guide/index.html#healthEndpoint">Health Endpoint</a> for more information.</p>
