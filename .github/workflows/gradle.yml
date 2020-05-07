@@ -14,25 +14,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
       - name: Build with Gradle
-        run: ./gradlew check --continue -x test-core:test -x test-cli:test
-      - name: Verify CLI
-        run: |
-          ./gradlew micronaut-cli:assemble
-          cp starter-cli/build/distributions/micronaut-cli-*.zip cli.zip
-          unzip cli -d tmp
-          mv tmp/micronaut-cli-* tmp/cli
-          ./tmp/cli/bin/mn --version
+        run: ./gradlew check --no-daemon
       - name: Publish to JFrog OSS
         if: success() && github.event_name == 'push' && matrix.java == '8' && github.ref == 'refs/heads/master'
         env:
