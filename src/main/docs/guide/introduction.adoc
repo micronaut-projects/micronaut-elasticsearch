@@ -1,1 +1,16 @@
 Micronaut supports automatic configuration of Elasticsearch https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html[Java REST Client^] via the `elasticsearch` module.
+
+=== Release History
+
+==== 1.2.x
+
+* Update to Elasticsearch 7.6.
+* Requires Micronaut 1.3.
+
+==== 1.1.x
+
+* Update to Elasticsearch 7.
+
+==== 1.0.x
+
+* Initial version with support for Elasticsearch 6.
