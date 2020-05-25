@@ -23,11 +23,11 @@ import io.micronaut.context.exceptions.NoSuchBeanException
 import io.micronaut.health.HealthStatus
 import io.micronaut.management.health.indicator.HealthResult
 import io.reactivex.Flowable
+import org.apache.http.auth.AuthScope
+import org.apache.http.auth.UsernamePasswordCredentials
+import org.apache.http.client.CredentialsProvider
+import org.apache.http.impl.client.BasicCredentialsProvider
 import org.testcontainers.elasticsearch.ElasticsearchContainer
-import org.testcontainers.shaded.org.apache.http.auth.AuthScope
-import org.testcontainers.shaded.org.apache.http.auth.UsernamePasswordCredentials
-import org.testcontainers.shaded.org.apache.http.client.CredentialsProvider
-import org.testcontainers.shaded.org.apache.http.impl.client.BasicCredentialsProvider
 import spock.lang.Specification
 
 /**
@@ -36,9 +36,11 @@ import spock.lang.Specification
  */
 class ElasticsearchHealthIndicatorSpec extends Specification {
 
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+
     void "test elasticsearch health indicator"() {
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.6.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
         container.start()
 
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()

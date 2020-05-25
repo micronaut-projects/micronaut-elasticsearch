@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        micronautDocsVersion = '1.0.23'
+    }
     repositories {
         maven { url "https://repo.grails.org/grails/core" }
     }
@@ -7,9 +10,13 @@ buildscript {
         classpath "org.grails:grails-docs:$grailsVersion"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.2"
+        classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.4.0"
         classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1'
         classpath "io.micronaut.docs:micronaut-docs-asciidoc-extensions:$micronautDocsVersion"
         classpath "io.micronaut.docs:micronaut-docs-gradle-plugins:$micronautDocsVersion"
+        classpath "io.spring.nohttp:nohttp-gradle:0.0.4.RELEASE"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.28.0"
     }
 }
 
@@ -47,7 +54,11 @@ subprojects { Project subproject ->
     }
 
     apply plugin:"groovy"
-    apply plugin:"java"
+    apply plugin:"java-library"
+    apply plugin: 'idea'
+    apply plugin: 'checkstyle'
+    apply plugin: "com.github.ben-manes.versions"
+    apply from: rootProject.file('gradle/license.gradle')
 
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
@@ -60,6 +71,31 @@ subprojects { Project subproject ->
             attributes('Implementation-Title': 'Micronaut Elasticsearch Configuration')
         }
     }
+
+    dependencyUpdates {
+        rejectVersionIf { mod ->
+            mod.candidate.version ==~ /.+(-|\.?)(b|M|RC)\d.*/ ||
+                    ["alpha", "beta", "milestone"].any { mod.candidate.version.toLowerCase(Locale.ENGLISH).contains(it) } ||
+                    mod.candidate.group == 'io.micronaut' // managed by the micronaut version
+        }
+        outputFormatter = { result ->
+            if (!result.outdated.dependencies.isEmpty()) {
+                def upgradeVersions = result.outdated.dependencies
+                if (!upgradeVersions.isEmpty()) {
+                    println "\nThe following dependencies have later ${revision} versions:"
+                    upgradeVersions.each { dep ->
+                        def currentVersion = dep.version
+                        println " - ${dep.group}:${dep.name} [${currentVersion} -> ${dep.available[revision]}]"
+                        if (dep.projectUrl != null) {
+                            println "     ${dep.projectUrl}"
+                        }
+                    }
+                    throw new GradleException('Abort, there are dependencies to update.')
+                }
+            }
+        }
+    }
+    check.dependsOn('dependencyUpdates')
 
     bintray.publish = true
 
@@ -74,8 +110,10 @@ subprojects { Project subproject ->
             System.out.flush()
         }
 
-        reports.html.enabled = !System.getenv("TRAVIS")
-        reports.junitXml.enabled = !System.getenv("TRAVIS")
+        reports.html.enabled = !System.getenv("GITHUB_ACTIONS")
+        reports.junitXml.enabled = !System.getenv("GITHUB_ACTIONS")
+
+        systemProperty("elasticsearchVersion", elasticsearchVersion)
     }
 
     configurations {
@@ -115,6 +153,34 @@ subprojects { Project subproject ->
     groovydoc.classpath += project.configurations.documentation
 
     task allDeps(type: DependencyReportTask) {}
+
+    checkstyle {
+        toolVersion = 8.32
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+
+        // Per submodule
+        maxErrors = 1
+        maxWarnings = 10
+
+        showViolations = true
+    }
+    checkstyleTest.enabled = false
+
+    idea {
+        module {
+            outputDir file('build/classes/java/main')
+            testOutputDir file('build/classes/groovy/test')
+        }
+    }
+
+    tasks.withType(GroovyCompile) {
+        groovyOptions.forkOptions.jvmArgs.add('-Dgroovy.parameters=true')
+    }
+
+    tasks.withType(JavaCompile){
+        options.encoding = "UTF-8"
+        options.compilerArgs.add('-parameters')
+    }
 }
 
 apply from:"https://raw.githubusercontent.com/micronaut-projects/micronaut-docs/v${micronautDocsVersion}/gradle/docs.gradle"

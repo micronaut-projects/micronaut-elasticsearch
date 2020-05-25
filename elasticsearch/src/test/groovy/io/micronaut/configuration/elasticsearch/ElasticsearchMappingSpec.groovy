@@ -41,10 +41,12 @@ import spock.lang.Specification
  */
 class ElasticsearchMappingSpec extends Specification {
 
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+
     void "Test Elasticsearch connection"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.6.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
@@ -63,14 +65,14 @@ class ElasticsearchMappingSpec extends Specification {
     void "Test Elasticsearch(7.x) Mapping API"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.6.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
         RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
 
-        expect: "Make sure the version of ES is 7.6.0 because these tests may cause unexpected results"
-        client.info(RequestOptions.DEFAULT).getVersion().getNumber().equals(Version.fromString("7.6.0").toString())
+        expect: "Make sure the version of ES is up to date because these tests may cause unexpected results"
+        client.info(RequestOptions.DEFAULT).getVersion().getNumber().equals(Version.fromString(ELASTICSEARCH_VERSION).toString())
 
         when:
         GetIndexRequest getIndexRequest = new GetIndexRequest("posts")

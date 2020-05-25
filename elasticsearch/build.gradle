@@ -14,8 +14,8 @@ dependencies {
     testCompile "io.micronaut:micronaut-inject-groovy"
     testCompile "io.micronaut:micronaut-inject-java"
     testCompile "io.micronaut:micronaut-inject-java-test"
-    testCompile "org.testcontainers:spock:$testContainerVersion"
-    testCompile "org.testcontainers:elasticsearch:$testContainerVersion"
+    testCompile "org.testcontainers:spock:1.14.2"
+    testCompile "org.testcontainers:elasticsearch:1.14.2"
     testCompile "io.micronaut:micronaut-management"
     testAnnotationProcessor "javax.persistence:javax.persistence-api:2.2"
 }
