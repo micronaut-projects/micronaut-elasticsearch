@@ -36,9 +36,11 @@ import spock.lang.Specification
  */
 class ElasticsearchHealthIndicatorSpec extends Specification {
 
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+
     void "test elasticsearch health indicator"() {
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.7.0")
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
         container.start()
 
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
