@@ -25,4 +25,4 @@ jobs:
           name: Micronaut Elasticsearch ${{ steps.release_notes.outputs.next_version }}
           tag: v${{ steps.release_notes.outputs.next_version }}
           bodyFile: CHANGELOG.md
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
