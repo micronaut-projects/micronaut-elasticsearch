@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Micronaut Elasticsearch</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <link rel="stylesheet" href="../css/highlight/agate.css">
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/guide.js"></script>
+    <script src="../js/multi-language-sample.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="../css/multi-language-sample.css"/>
+    <script src="../js/docs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+    <script type="text/javascript">
+        function addJsClass(el) {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+
+</head>
+
+<body class="body" id="docs" onload="addJsClass();" onhashchange="highlightMenu()">
+
+<div id="table-of-content-nav-link" class="desktop">
+    <a id="theme-switcher" title="Switch to dark theme" href="javascript:switchTheme(true)"><i class="fa fa-moon-o"></i></a>
+    <a title="Collapse/Open Table of contents" title="Hide Table of Contents" href="javascript:hideTableOfContents();" class="button">[ + ]</a>
+</div>
+
+<div id="main">
+    <div id="navigation" class="no-print">
+        <div class="navTitle">
+            <span id="logo"><a href="http://micronaut.io" title="Go to Micronaut Website"><img src="../img/micronaut-logo-white.svg" alt="Micronaut"/></a></span>
+        </div>
+        <div class="navLinks">
+            <ul>
+                    <li><div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)" class="desktop">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>2</strong><span>Configuration</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#healthChecks"><strong>3</strong><span>Health Checks</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                <li id="table-of-content-nav-link-mobile" class="mobile">
+                    <a title="Scroll to Table of contents" href="javascript:scrollToTop();" class="button">Toc</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to API documentation" href="../api/index.html" class="button">API</a>
+                </li>
+                <li class="desktop">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Configuration Reference</a>
+                </li>
+                <li class="mobile">
+                    <a title="Go to Configuration Reference documentation" href="../guide/configurationreference.html" class="button">Conf</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    
+    <div id="table-of-content">
+        <div class="toc-content">
+
+        <h2>Table of Contents</h2>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-introduction"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-configuration"><a href="#configuration"><strong>2</strong><span>Configuration</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-healthChecks"><a href="#healthChecks"><strong>3</strong><span>Health Checks</span></a></div>
+        
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
+        
+        </div>
+    </div>
+    
+    <div class="docs-content">
+    <div class="project">
+        <h1>Micronaut Elasticsearch</h1>
+        <p></p>
+        <p>Integration between Micronaut and Elasticsearch</p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://micronaut-projects.github.io/micronaut-elasticsearch/snapshot/guide/index.html'>SNAPSHOT</option><option selected='selected' value='https://micronaut-projects.github.io/micronaut-elasticsearch/2.0.0.M1/guide/index.html'>2.0.0.M1</option><option value='https://micronaut-projects.github.io/micronaut-elasticsearch/1.2.0/guide/index.html'>1.2.0</option><option value='https://micronaut-projects.github.io/micronaut-elasticsearch/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-elasticsearch/1.0.0/guide/index.html'>1.0.0</option></select></p>
+    </div>
+    
+<h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/introduction.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>Micronaut supports automatic configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html" target="_blank" rel="noopener">Java REST Client</a> via the <code>elasticsearch</code> module.</p>
+</div>
+<div class="sect2">
+<h3 id="_release_history">Release History</h3>
+<div class="sect3">
+<h4 id="_2_0_x">2.0.x</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Requires Micronaut 2.x</p>
+</li>
+<li>
+<p>Module is published under <code>io.micronaut.elasticsearch</code> group id, instead of <code>io.micronaut.configuration</code>.
+Similarly, package <code>io.micronaut.configuration.elasticsearch</code> has been renamed to <code>io.micronaut.elasticsearch</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_x">1.2.x</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Update to Elasticsearch 7.7.</p>
+</li>
+<li>
+<p>Requires Micronaut 1.3.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_x">1.1.x</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Update to Elasticsearch 7.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_0_x">1.0.x</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial version with support for Elasticsearch 6.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<h1 id="configuration"><a class="anchor" href="#configuration"></a>2 Configuration</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/configuration.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="sect1">
+<h2 id="_configuring_the_elasticsearch_client">Configuring the Elasticsearch Client</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Using the CLI</div>
+<div class="paragraph">
+<p>If you are creating your project using the Micronaut CLI, supply the <code>elasticsearch</code> feature to configure the Elasticsearch Java REST Client in your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mn create-app my-app --features elasticsearch</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To configure the Elasticsearch Java REST Client you should first add <code>elasticsearch</code> module to your classpath:</p>
+</div>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.elasticsearch:micronaut-elasticsearch"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should then configure the <code>httpHosts</code> of the Elasticsearch server you wish to communicate with in <code>application.yml</code> as:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
+  httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the API for <a href="../api/io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
+</div>
+<div class="paragraph">
+<p>Once you have the above configuration in place then you can inject the <code>org.elasticsearch.client.RestHighLevelClient</code> or <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the High Level REST Client:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">MainResponse response =
+        client.info(RequestOptions.DEFAULT) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>client</code> is an instance of the <code>org.elasticsearch.client.RestHighLevelClient</code> bean.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information on executing different operations using Elasticsearch High Level REST Client please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">Elasticsearch Documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modify_the_default_request_configurations">Modify the Default Request Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Often times you want to change the default configurations. To achieve this Micronaut, includes the ability to change the default request configurations. You can set the default request configurations under key <code>elasticsearch.request.default</code> as:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
+  httpHosts: http://localhost:9200,http://127.0.0.2:9200
+  request:
+    default:
+      expectContinueEnabled: true
+      localAddress: 198.57.151.22</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the API <a href="https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html" target="_blank" rel="noopener">RequestConfig.Builder</a> for more information on the available configuration options.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modify_the_http_client_configurations">Modify the HTTP Client Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the <a href="http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html" target="_blank" rel="noopener">HttpAsyncClientBuilder</a> allows to set). You can define a bean using <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Factory.html">Factory</a> which replaces <code>org.apache.http.impl.nio.client.HttpAsyncClientBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>Following is an example to change the default credentials provider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.context.annotation.Replaces
+import org.apache.http.auth.AuthScope
+
+@Factory
+static class HttpAsyncClientBuilderFactory {
+
+    @Replaces(HttpAsyncClientBuilder.class)
+    @Singleton
+    HttpAsyncClientBuilder builder() {
+        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
+        credentialsProvider.setCredentials(AuthScope.ANY,
+                new UsernamePasswordCredentials("user", "password"))
+
+        return HttpAsyncClientBuilder.create()
+                .setDefaultCredentialsProvider(credentialsProvider)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+<h1 id="healthChecks"><a class="anchor" href="#healthChecks"></a>3 Health Checks</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/healthChecks.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>When the <code>elasticsearch</code> module is activated a <a href="../api/io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html">ElasticsearchHealthIndicator</a> is
+activated resulting in the <code>/health</code> endpoint and <a href="https://docs.micronaut.io/latest/api/io/micronaut/health/CurrentHealthStatus.html">CurrentHealthStatus</a>
+interface resolving the health of the Elasticsearch cluster.</p>
+</div>
+<div class="paragraph">
+<p>The only configuration option supported is to enable or disable the indicator.</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
+  health:
+    elasticsearch:
+      rest:
+        high:
+          level:
+            enabled: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the section on the <a href="https://docs.micronaut.io/latest/guide/index.html#healthEndpoint">Health Endpoint</a> for more information.</p>
+</div>
+
+<h1 id="repository"><a class="anchor" href="#repository"></a>4 Repository</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/repository.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can find the source code of this project in this repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-elasticsearch">https://github.com/micronaut-projects/micronaut-elasticsearch</a></p>
+</div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
