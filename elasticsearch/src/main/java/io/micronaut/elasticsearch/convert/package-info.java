@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 /**
- * Elasticsearch Client condition.
+ * Elasticsearch converters.
  *
  * @author Puneet Behl
  * @since 1.0.0
  */
 
-package io.micronaut.configuration.elasticsearch.conditon;
+package io.micronaut.elasticsearch.convert;

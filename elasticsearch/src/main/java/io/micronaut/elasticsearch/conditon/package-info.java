@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
- * Configuration for Elasticsearch RestHighLevelClient.
- * refer to https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.3/java-rest-high.html
+ * Elasticsearch Client condition.
  *
- * @author lishuai
+ * @author Puneet Behl
  * @since 1.0.0
  */
-@Configuration
-@RequiresElasticsearch
-package io.micronaut.configuration.elasticsearch;
 
-import io.micronaut.configuration.elasticsearch.conditon.RequiresElasticsearch;
-import io.micronaut.context.annotation.Configuration;
+package io.micronaut.elasticsearch.conditon;

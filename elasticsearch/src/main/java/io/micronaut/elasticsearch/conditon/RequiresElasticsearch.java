@@ -13,26 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.elasticsearch;
+package io.micronaut.elasticsearch.conditon;
 
-import org.apache.http.HttpHost;
+import io.micronaut.elasticsearch.ElasticsearchSettings;
+import io.micronaut.context.annotation.Requires;
+import org.elasticsearch.client.RestHighLevelClient;
+
+import java.lang.annotation.*;
 
 /**
- * Common constants for Elasticsearch settings.
+ * Meta annotation for Elasticsearch that can be added to any component that requires Elasticsearch to load.
  *
- * @author lishuai
+ * @author Puneet Behl
  * @since 1.0.0
  */
-public interface ElasticsearchSettings {
-
-    /**
-     * The prefix to use for all Elasticsearch settings.
-     */
-    String PREFIX = "elasticsearch";
-
-    /**
-     * Default Elasticsearch host.
-     */
-    HttpHost DEFAULT_HOST = new HttpHost("127.0.0.1", 9200, "http");
-
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.PACKAGE, ElementType.TYPE})
+@Requires(property = ElasticsearchSettings.PREFIX)
+@Requires(classes = {RestHighLevelClient.class})
+public @interface RequiresElasticsearch {
 }

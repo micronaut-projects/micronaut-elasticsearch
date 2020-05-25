@@ -13,11 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
- * Reactive Pg Client heath indicator.
+ * Configuration for Elasticsearch RestHighLevelClient.
+ * refer to https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.3/java-rest-high.html
  *
- * @author Puneet Behl
+ * @author lishuai
  * @since 1.0.0
  */
-package io.micronaut.configuration.elasticsearch.health;
+@Configuration
+@RequiresElasticsearch
+package io.micronaut.elasticsearch;
 
+import io.micronaut.elasticsearch.conditon.RequiresElasticsearch;
+import io.micronaut.context.annotation.Configuration;

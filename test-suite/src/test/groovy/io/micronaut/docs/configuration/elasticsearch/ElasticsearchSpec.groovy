@@ -16,7 +16,7 @@
 
 package io.micronaut.docs.configuration.elasticsearch
 
-import io.micronaut.configuration.elasticsearch.DefaultElasticsearchConfigurationProperties
+import io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.annotation.Factory
 

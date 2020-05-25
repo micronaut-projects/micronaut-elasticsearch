@@ -41,7 +41,7 @@ ext {
 subprojects { Project subproject ->
 
     version project.projectVersion
-    group "io.micronaut.configuration"
+    group "io.micronaut.elasticsearch"
     
     ext {
         isConfiguration = subproject.projectDir.parentFile.name == 'configurations'

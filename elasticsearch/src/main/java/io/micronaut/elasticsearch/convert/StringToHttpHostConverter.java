@@ -13,36 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.elasticsearch.convert;
+package io.micronaut.elasticsearch.convert;
 
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.convert.ConversionContext;
 import io.micronaut.core.convert.TypeConverter;
-import org.apache.http.Header;
-import org.apache.http.message.BasicHeader;
+import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClientBuilder;
 
 import javax.inject.Singleton;
+import java.net.URI;
 import java.util.Optional;
 
 /**
- * Converts String to {@link Header}.
+ * Converts String to {@link HttpHost}.
  *
  * @author Puneet Behl
  * @since 1.0.0
  */
 @Singleton
 @Requires(classes = RestClientBuilder.class)
-public class StringToHeaderConverter implements TypeConverter<CharSequence, Header> {
+public class StringToHttpHostConverter implements TypeConverter<CharSequence, HttpHost> {
 
     @Override
-    public Optional<Header> convert(CharSequence object, Class<Header> targetType, ConversionContext context) {
-        String header = object.toString();
-        if (header.contains(":")) {
-            String[] nameAndValue = header.split(":");
-            return Optional.of(new BasicHeader(nameAndValue[0], nameAndValue[1]));
-        } else {
-            return Optional.empty();
-        }
+    public Optional<HttpHost> convert(CharSequence object, Class<HttpHost> targetType, ConversionContext context) {
+        String uriString = object.toString();
+        URI uri = URI.create(uriString);
+        return Optional.of(new HttpHost(uri.getHost(), uri.getPort(), uri.getScheme()));
     }
 }

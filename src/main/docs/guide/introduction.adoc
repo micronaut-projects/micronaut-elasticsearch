@@ -2,6 +2,12 @@ Micronaut supports automatic configuration of Elasticsearch https://www.elastic.
 
 === Release History
 
+==== 2.0.x
+
+* Requires Micronaut 2.x
+* Module is published under `io.micronaut.elasticsearch` group id, instead of `io.micronaut.configuration`.
+  Similarly, package `io.micronaut.configuration.elasticsearch` has been renamed to `io.micronaut.elasticsearch`.
+
 ==== 1.2.x
 
 * Update to Elasticsearch 7.7.
