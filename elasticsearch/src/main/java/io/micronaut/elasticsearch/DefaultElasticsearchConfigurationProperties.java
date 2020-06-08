@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.elasticsearch;
+package io.micronaut.elasticsearch;
 
 import io.micronaut.context.annotation.ConfigurationBuilder;
 import io.micronaut.context.annotation.ConfigurationProperties;
@@ -27,8 +27,6 @@ import org.elasticsearch.client.RestClientBuilder;
 
 import javax.inject.Inject;
 import java.util.Collections;
-
-import static io.micronaut.configuration.elasticsearch.ElasticsearchSettings.DEFAULT_HOST;
 
 /**
  * Default configurations for Elasticsearch.
@@ -53,7 +51,7 @@ public class DefaultElasticsearchConfigurationProperties implements DefaultElast
 
     private int maxRetryTimeoutMillis;
     private NodeSelector nodeSelector;
-    private HttpHost[] httpHosts = Collections.singletonList(DEFAULT_HOST).toArray(new HttpHost[1]);
+    private HttpHost[] httpHosts = Collections.singletonList(ElasticsearchSettings.DEFAULT_HOST).toArray(new HttpHost[1]);
     private Header[] defaultHeaders;
 
     @Override

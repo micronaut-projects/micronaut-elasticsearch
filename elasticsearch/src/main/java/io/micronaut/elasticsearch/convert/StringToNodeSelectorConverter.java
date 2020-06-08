@@ -13,40 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.elasticsearch.convert;
+package io.micronaut.elasticsearch.convert;
 
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.convert.ConversionContext;
 import io.micronaut.core.convert.TypeConverter;
+import org.elasticsearch.client.NodeSelector;
 import org.elasticsearch.client.RestClientBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Singleton;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
- * Converts String to {@link InetAddress}.
+ * Converts String to {@link NodeSelector}.
  *
  * @author Puneet Behl
  * @since 1.0.0
  */
 @Singleton
 @Requires(classes = RestClientBuilder.class)
-public class StringToInetAddressConverter implements TypeConverter<CharSequence, InetAddress> {
-
-    private static final Logger LOG = LoggerFactory.getLogger(StringToInetAddressConverter.class);
+public class StringToNodeSelectorConverter implements TypeConverter<CharSequence, NodeSelector> {
 
     @Override
-    public Optional<InetAddress> convert(CharSequence object, Class<InetAddress> targetType, ConversionContext context) {
-        String address = object.toString();
-        try {
-            return Optional.of(InetAddress.getByName(address));
-        } catch (UnknownHostException e) {
-            LOG.error(e.getMessage(), e);
-            return Optional.empty();
+    public Optional<NodeSelector> convert(CharSequence object, Class<NodeSelector> targetType, ConversionContext context) {
+        String nodeSelector = object.toString().toUpperCase(Locale.ENGLISH);
+        switch (nodeSelector) {
+            case "SKIP_DEDICATED_MASTERS":
+                return Optional.of(NodeSelector.SKIP_DEDICATED_MASTERS);
+            case "ANY":
+                return Optional.of(NodeSelector.ANY);
+            default:
+                return Optional.empty();
         }
     }
 }

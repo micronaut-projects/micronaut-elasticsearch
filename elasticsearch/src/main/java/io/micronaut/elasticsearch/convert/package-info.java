@@ -20,4 +20,4 @@
  * @since 1.0.0
  */
 
-package io.micronaut.configuration.elasticsearch.convert;
+package io.micronaut.elasticsearch.convert;

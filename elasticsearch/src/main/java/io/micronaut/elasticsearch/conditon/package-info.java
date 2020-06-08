@@ -13,24 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.configuration.elasticsearch.conditon;
-
-import io.micronaut.configuration.elasticsearch.ElasticsearchSettings;
-import io.micronaut.context.annotation.Requires;
-import org.elasticsearch.client.RestHighLevelClient;
-
-import java.lang.annotation.*;
-
 /**
- * Meta annotation for Elasticsearch that can be added to any component that requires Elasticsearch to load.
+ * Elasticsearch Client condition.
  *
  * @author Puneet Behl
  * @since 1.0.0
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PACKAGE, ElementType.TYPE})
-@Requires(property = ElasticsearchSettings.PREFIX)
-@Requires(classes = {RestHighLevelClient.class})
-public @interface RequiresElasticsearch {
-}
+
+package io.micronaut.elasticsearch.conditon;

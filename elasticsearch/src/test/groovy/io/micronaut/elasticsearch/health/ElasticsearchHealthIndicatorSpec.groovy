@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package io.micronaut.configuration.elasticsearch.health
+package io.micronaut.elasticsearch.health
 
 import groovy.json.JsonSlurper
-import io.micronaut.configuration.elasticsearch.DefaultElasticsearchConfigurationProperties
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.exceptions.NoSuchBeanException
+import io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties
 import io.micronaut.health.HealthStatus
 import io.micronaut.management.health.indicator.HealthResult
 import io.reactivex.Flowable

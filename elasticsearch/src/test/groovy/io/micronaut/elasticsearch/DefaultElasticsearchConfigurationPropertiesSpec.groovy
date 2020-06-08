@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.micronaut.configuration.elasticsearch
+package io.micronaut.elasticsearch
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.annotation.Factory

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 /**
- * Elasticsearch Client condition.
+ * Reactive Pg Client heath indicator.
  *
  * @author Puneet Behl
  * @since 1.0.0
  */
+package io.micronaut.elasticsearch.health;
 
-package io.micronaut.configuration.elasticsearch.conditon;

@@ -13,11 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.micronaut.elasticsearch;
+
+import org.apache.http.HttpHost;
+
 /**
- * Reactive Pg Client heath indicator.
+ * Common constants for Elasticsearch settings.
  *
- * @author Puneet Behl
+ * @author lishuai
  * @since 1.0.0
  */
-package io.micronaut.configuration.elasticsearch.health;
+public interface ElasticsearchSettings {
 
+    /**
+     * The prefix to use for all Elasticsearch settings.
+     */
+    String PREFIX = "elasticsearch";
+
+    /**
+     * Default Elasticsearch host.
+     */
+    HttpHost DEFAULT_HOST = new HttpHost("127.0.0.1", 9200, "http");
+
+}
