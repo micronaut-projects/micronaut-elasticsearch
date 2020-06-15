@@ -33,6 +33,7 @@ subprojects { Project subproject ->
 
     tasks.withType(Test) {
         systemProperty("elasticsearchVersion", elasticsearchVersion)
+        useJUnitPlatform()
     }
 }
 
