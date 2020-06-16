@@ -1,0 +1,17 @@
+
+Micronaut Elasticsearch is compatible with https://www.graalvm.org/[GraalVM] out of the box. The only thing needed is
+to add some dependencies to make logging work.
+
+[source,groovy]
+----
+// Enable logging on JVM
+runtimeOnly 'org.slf4j:log4j-over-slf4j:1.7.30'
+
+// Additional dependencies for logging on GraalVM
+implementation 'org.apache.logging.log4j:log4j-api:2.13.3'
+implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
+----
+
+
+NOTE: See the section on https://docs.micronaut.io/latest/guide/index.html#graal[GraalVM] in the user guide for more
+information.

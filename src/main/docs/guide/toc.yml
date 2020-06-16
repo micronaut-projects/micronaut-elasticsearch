@@ -2,4 +2,5 @@ introduction:
   title: Introduction
 configuration: Configuration
 healthChecks: Health Checks
+graalvm: GraalVM Support
 repository: Repository
