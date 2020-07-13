@@ -1,4 +1,4 @@
-io.micronaut.elasticsearch
-io.micronaut.elasticsearch.conditon
-io.micronaut.elasticsearch.convert
-io.micronaut.elasticsearch.health
+io.micronaut.configuration.elasticsearch
+io.micronaut.configuration.elasticsearch.conditon
+io.micronaut.configuration.elasticsearch.convert
+io.micronaut.configuration.elasticsearch.health
