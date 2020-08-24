@@ -49,9 +49,7 @@
                                 
                                 <div class="toc-item" style="margin-left:0"><a href="#healthChecks"><strong>3</strong><span>Health Checks</span></a></div>
                                 
-                                <div class="toc-item" style="margin-left:0"><a href="#graalvm"><strong>4</strong><span>GraalVM Support</span></a></div>
-                                
-                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>5</strong><span>Repository</span></a></div>
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
                                 
                             </div>
                         </div>
@@ -88,9 +86,7 @@
         
         <div class="toc-item" style="margin-left:0px" id="toc-item-healthChecks"><a href="#healthChecks"><strong>3</strong><span>Health Checks</span></a></div>
         
-        <div class="toc-item" style="margin-left:0px" id="toc-item-graalvm"><a href="#graalvm"><strong>4</strong><span>GraalVM Support</span></a></div>
-        
-        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>5</strong><span>Repository</span></a></div>
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>4</strong><span>Repository</span></a></div>
         
         </div>
     </div>
@@ -106,7 +102,7 @@
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/introduction.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/1.2.x/src/main/docs/guide/introduction.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -117,23 +113,6 @@
 </div>
 <div class="sect2">
 <h3 id="_release_history">Release History</h3>
-<div class="sect3">
-<h4 id="_2_0_x">2.0.x</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Requires Micronaut 2.x</p>
-</li>
-<li>
-<p>Module is published under <code>io.micronaut.elasticsearch</code> group id, instead of <code>io.micronaut.configuration</code>.
-Similarly, package <code>io.micronaut.configuration.elasticsearch</code> has been renamed to <code>io.micronaut.elasticsearch</code>.</p>
-</li>
-<li>
-<p>Support for GraalVM.</p>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect3">
 <h4 id="_1_2_x">1.2.x</h4>
 <div class="ulist">
@@ -172,7 +151,7 @@ Similarly, package <code>io.micronaut.configuration.elasticsearch</code> has bee
 <h1 id="configuration"><a class="anchor" href="#configuration"></a>2 Configuration</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/configuration.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/1.2.x/src/main/docs/guide/configuration.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -207,7 +186,7 @@ Similarly, package <code>io.micronaut.configuration.elasticsearch</code> has bee
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.elasticsearch:micronaut-elasticsearch"</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.configuration:micronaut-elasticsearch"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -303,7 +282,7 @@ static class HttpAsyncClientBuilderFactory {
 <h1 id="healthChecks"><a class="anchor" href="#healthChecks"></a>3 Health Checks</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/healthChecks.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/1.2.x/src/main/docs/guide/healthChecks.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -333,98 +312,10 @@ interface resolving the health of the Elasticsearch cluster.</p>
 <p>See the section on the <a href="https://docs.micronaut.io/latest/guide/index.html#healthEndpoint">Health Endpoint</a> for more information.</p>
 </div>
 
-<h1 id="graalvm"><a class="anchor" href="#graalvm"></a>4 GraalVM Support</h1>
+<h1 id="repository"><a class="anchor" href="#repository"></a>4 Repository</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/graalvm.adoc"'>
-        <i class='fa fa-pencil-square-o'></i> Improve this doc
-    </button>
-</div>
-
-
-<div class="paragraph">
-<p>Micronaut Elasticsearch is compatible with <a href="https://www.graalvm.org/">GraalVM</a> out of the box. The only thing needed is
-to add some dependencies to make logging work.</p>
-</div>
-<div class="paragraph">
-<p>To enable the logging when running on the JVM:</p>
-</div>
-<div class="paragraph">
-<p>        <div class="listingblock multi-language-sample">
-<div class="title"></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">runtimeOnly(<span class="hljs-string">"org.slf4j:log4j-over-slf4j:1.7.30")</span></code></pre>
-</div>
-</div>
-<div class="listingblock multi-language-sample">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
-    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j-over-slf4j&lt;/artifactId&gt;
-    &lt;version&gt;1.7.30&lt;/version&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</p>
-</div>
-<div class="paragraph">
-<p>Additional dependencies for logging on GraalVM:</p>
-</div>
-<div class="paragraph">
-<p>        <div class="listingblock multi-language-sample">
-<div class="title"></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.apache.logging.log4j:log4j-api:2.13.3")</span></code></pre>
-</div>
-</div>
-<div class="listingblock multi-language-sample">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
-    &lt;version&gt;2.13.3&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</p>
-</div>
-<div class="paragraph">
-<p>        <div class="listingblock multi-language-sample">
-<div class="title"></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"org.apache.logging.log4j:log4j-core:2.13.3")</span></code></pre>
-</div>
-</div>
-<div class="listingblock multi-language-sample">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
-    &lt;version&gt;2.13.3&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-See the section on <a href="https://docs.micronaut.io/latest/guide/index.html#graal">GraalVM</a> in the user guide for more
-information.
-</td>
-</tr>
-</table>
-</div>
-
-<h1 id="repository"><a class="anchor" href="#repository"></a>5 Repository</h1>
-
-<div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/repository.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/1.2.x/src/main/docs/guide/repository.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
