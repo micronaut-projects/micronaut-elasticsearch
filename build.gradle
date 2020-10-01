@@ -5,7 +5,7 @@ buildscript {
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
-        classpath "io.micronaut.build:micronaut-gradle-plugins:2.0.8"
+        classpath "io.micronaut.build:micronaut-gradle-plugins:2.0.11"
     }
 }
 
@@ -14,12 +14,8 @@ subprojects { Project subproject ->
     group "io.micronaut.elasticsearch"
 
     apply plugin: "io.micronaut.build.common"
-
-    if (subproject.parent.name == "docs-examples" || subproject.name == "docs-examples") {
-        return
-    }
-
     apply plugin: "io.micronaut.build.dependency-updates"
+
     if (subproject.name != 'test-suite') {
         apply plugin: "io.micronaut.build.publishing"
     }
