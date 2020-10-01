@@ -1,5 +1,6 @@
 introduction:
   title: Introduction
+releaseHistory: Release History
 configuration: Configuration
 healthChecks: Health Checks
 graalvm: GraalVM Support
