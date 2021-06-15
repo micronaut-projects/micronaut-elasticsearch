@@ -59,6 +59,7 @@ public class DefaultElasticsearchClientFactory {
      */
     protected RestClientBuilder restClientBuilder(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
         return RestClient.builder(elasticsearchConfiguration.getHttpHosts())
+                .setDefaultHeaders(elasticsearchConfiguration.getDefaultHeaders())
                 .setRequestConfigCallback(requestConfigBuilder -> {
                     requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
                     return requestConfigBuilder;
