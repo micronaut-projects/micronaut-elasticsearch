@@ -7,8 +7,6 @@ dependencies {
     api "io.micronaut:micronaut-validation"
     api "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
 
-    implementation 'jakarta.inject:jakarta.inject-api:2.0.0'
-
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
     compileOnly "io.micronaut:micronaut-management"
