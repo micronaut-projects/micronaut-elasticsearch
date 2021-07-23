@@ -21,7 +21,7 @@ import io.micronaut.context.annotation.Requires;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 /**
  * The default factory used to create {@link HttpAsyncClientBuilder} for HTTP client configurations.

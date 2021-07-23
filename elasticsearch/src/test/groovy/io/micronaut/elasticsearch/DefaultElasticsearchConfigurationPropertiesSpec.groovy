@@ -30,7 +30,7 @@ import org.elasticsearch.client.NodeSelector
 import org.elasticsearch.client.RestHighLevelClient
 import spock.lang.Specification
 
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 /**
  * @author Puneet Behl

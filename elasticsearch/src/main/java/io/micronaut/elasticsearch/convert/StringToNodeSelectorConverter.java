@@ -21,7 +21,7 @@ import io.micronaut.core.convert.TypeConverter;
 import org.elasticsearch.client.NodeSelector;
 import org.elasticsearch.client.RestClientBuilder;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.util.Locale;
 import java.util.Optional;
 

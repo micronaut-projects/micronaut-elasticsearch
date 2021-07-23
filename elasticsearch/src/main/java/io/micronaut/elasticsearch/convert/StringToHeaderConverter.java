@@ -22,7 +22,7 @@ import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClientBuilder;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.util.Optional;
 
 /**

@@ -25,7 +25,7 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.NodeSelector;
 import org.elasticsearch.client.RestClientBuilder;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Collections;
 
 /**

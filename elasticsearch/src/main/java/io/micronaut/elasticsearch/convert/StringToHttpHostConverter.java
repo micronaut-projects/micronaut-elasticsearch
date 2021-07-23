@@ -21,7 +21,7 @@ import io.micronaut.core.convert.TypeConverter;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClientBuilder;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.net.URI;
 import java.util.Optional;
 

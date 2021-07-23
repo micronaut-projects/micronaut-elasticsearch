@@ -37,7 +37,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer
 import spock.lang.Shared
 import spock.lang.Specification
 
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 //tag::singletonImports[]
 //end::singletonImports[]
