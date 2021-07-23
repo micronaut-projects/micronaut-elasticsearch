@@ -13,6 +13,7 @@ dependencies {
     compileOnly "org.graalvm.nativeimage:svm"
     compileOnly "io.micronaut:micronaut-management"
 
+    testImplementation "io.projectreactor:reactor-core"
     testImplementation "io.micronaut:micronaut-runtime"
     testImplementation "io.micronaut.security:micronaut-security"
     testImplementation "io.micronaut:micronaut-inject-groovy"

@@ -22,13 +22,13 @@ import io.micronaut.context.exceptions.NoSuchBeanException
 import io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties
 import io.micronaut.health.HealthStatus
 import io.micronaut.management.health.indicator.HealthResult
-import io.reactivex.Flowable
 import org.apache.http.auth.AuthScope
 import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 import spock.lang.Specification
+import reactor.core.publisher.Flux
 
 /**
  * @author Puneet Behl
@@ -53,7 +53,7 @@ class ElasticsearchHealthIndicatorSpec extends Specification {
 
         when:
         ElasticsearchHealthIndicator indicator = applicationContext.getBean(ElasticsearchHealthIndicator)
-        HealthResult result = Flowable.fromPublisher(indicator.getResult()).blockingFirst()
+        HealthResult result = Flux.from(indicator.getResult()).blockFirst()
 
         then:
         result.status == HealthStatus.UP
@@ -61,7 +61,7 @@ class ElasticsearchHealthIndicatorSpec extends Specification {
 
         when:
         container.stop()
-        result = Flowable.fromPublisher(indicator.getResult()).blockingFirst()
+        result = Flux.from(indicator.getResult()).blockFirst()
 
         then:
         result.status == HealthStatus.DOWN
