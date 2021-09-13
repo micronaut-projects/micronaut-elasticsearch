@@ -12,7 +12,7 @@ dependencies {
     testImplementation "org.testcontainers:spock:1.16.0"
     testImplementation "org.testcontainers:elasticsearch:1.16.0"
     // end::testcontainers-dependencies[]
-    testRuntimeOnly "ch.qos.logback:logback-classic:1.2.5"
+    testRuntimeOnly "ch.qos.logback:logback-classic:1.2.6"
 }
 
 test {
