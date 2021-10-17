@@ -18,6 +18,7 @@ package io.micronaut.elasticsearch;
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
+import io.micronaut.core.util.ArrayUtils;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -58,8 +59,7 @@ public class DefaultElasticsearchClientFactory {
      * @return The {@link RestClientBuilder}
      */
     protected RestClientBuilder restClientBuilder(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
-        return RestClient.builder(elasticsearchConfiguration.getHttpHosts())
-                .setDefaultHeaders(elasticsearchConfiguration.getDefaultHeaders())
+        RestClientBuilder builder = RestClient.builder(elasticsearchConfiguration.getHttpHosts())
                 .setRequestConfigCallback(requestConfigBuilder -> {
                     requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
                     return requestConfigBuilder;
@@ -68,6 +68,12 @@ public class DefaultElasticsearchClientFactory {
                     httpClientBuilder = elasticsearchConfiguration.httpAsyncClientBuilder;
                     return httpClientBuilder;
                 });
+
+        if (ArrayUtils.isNotEmpty(elasticsearchConfiguration.getDefaultHeaders())) {
+            builder.setDefaultHeaders(elasticsearchConfiguration.getDefaultHeaders());
+        }
+
+        return builder;
     }
 
 }
