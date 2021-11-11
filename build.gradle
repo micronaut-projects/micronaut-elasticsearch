@@ -1,12 +1,3 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath "io.micronaut.build.internal:micronaut-gradle-plugins:4.2.4"
-    }
-}
 
 subprojects { Project subproject ->
 
@@ -17,13 +8,6 @@ subprojects { Project subproject ->
 
     if (subproject.name != 'test-suite') {
         apply plugin: "io.micronaut.build.internal.publishing"
-    }
-
-    dependencies {
-        testImplementation("org.spockframework:spock-core:${spockVersion}") {
-            exclude module:'groovy-all'
-        }
-        testImplementation "io.micronaut.test:micronaut-test-spock:$micronautTestVersion"
     }
 
     tasks.withType(Test) {
