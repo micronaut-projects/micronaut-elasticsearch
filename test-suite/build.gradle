@@ -9,8 +9,8 @@ dependencies {
     testImplementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
     testCompileOnly "io.micronaut:micronaut-inject-groovy"
     // tag::testcontainers-dependencies[]
-    testImplementation "org.testcontainers:spock"
-    testImplementation "org.testcontainers:elasticsearch"
+    testImplementation "org.testcontainers:spock:$testcontainersVersion"
+    testImplementation "org.testcontainers:elasticsearch:$testcontainersVersion"
     // end::testcontainers-dependencies[]
     testRuntimeOnly "ch.qos.logback:logback-classic"
 }

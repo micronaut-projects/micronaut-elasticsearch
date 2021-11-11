@@ -17,8 +17,8 @@ dependencies {
     testImplementation "io.micronaut:micronaut-inject-groovy"
     testImplementation "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-inject-java-test"
-    testImplementation "org.testcontainers:spock"
-    testImplementation "org.testcontainers:elasticsearch"
+    testImplementation "org.testcontainers:spock:$testcontainersVersion"
+    testImplementation "org.testcontainers:elasticsearch:$testcontainersVersion"
     testImplementation "io.micronaut:micronaut-management"
     testImplementation "org.codehaus.groovy:groovy-json"
 }
