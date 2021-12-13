@@ -67,3 +67,9 @@ include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=h
 include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=singletonImports,indent=0]
 include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=httpClientFactory,indent=0]
 ----
+
+=== Logging
+
+Elasticsearch uses log4j for logging but Micronaut uses slf4j with Logback. To make it work properly, add the following dependency:
+
+dependency:org.slf4j:log4j-over-slf4j[version="1.7.30", scope="runtimeOnly"]
