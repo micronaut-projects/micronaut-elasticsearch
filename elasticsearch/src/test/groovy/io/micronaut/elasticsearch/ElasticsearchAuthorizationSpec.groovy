@@ -21,11 +21,13 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.core.MainResponse
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import spock.lang.Requires
 import spock.lang.Specification
 
+@Requires({ sys['elasticsearch.version'] })
 class ElasticsearchAuthorizationSpec extends Specification {
 
-    static final String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+    static final String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
     static final String ELASTICSEARCH_USERNAME = "elastic"
     static final String ELASTICSEARCH_PASSWORD = "changeme"
 

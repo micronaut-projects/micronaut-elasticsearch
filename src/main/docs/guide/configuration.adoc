@@ -31,7 +31,7 @@ Once you have the above configuration in place then you can inject the `org.elas
 
 [source,groovy]
 ----
-include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=query,indent=0]
+include::test-suite-groovy/src/test/groovy/io/micronaut/docs/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=query,indent=0]
 ----
 
 <1> `client` is an instance of the `org.elasticsearch.client.RestHighLevelClient` bean.
@@ -63,9 +63,9 @@ Following is an example to change the default credentials provider:
 
 [source,groovy]
 ----
-include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=httpClientFactoryImports,indent=0]
-include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=singletonImports,indent=0]
-include::{testsuite}/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=httpClientFactory,indent=0]
+include::test-suite-groovy/src/test/groovy/io/micronaut/docs/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=httpClientFactoryImports,indent=0]
+include::test-suite-groovy/src/test/groovy/io/micronaut/docs/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=singletonImports,indent=0]
+include::test-suite-groovy/src/test/groovy/io/micronaut/docs/configuration/elasticsearch/ElasticsearchSpec.groovy[tags=httpClientFactory,indent=0]
 ----
 
 === Logging

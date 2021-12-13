@@ -32,6 +32,7 @@ import org.elasticsearch.client.indices.GetIndexRequest
 import org.elasticsearch.common.xcontent.XContentType
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import spock.lang.Requires
 import spock.lang.Specification
 
 /**
@@ -39,9 +40,10 @@ import spock.lang.Specification
  * @author Puneet Behl
  * @since 1.0.1
  */
+@Requires({ sys['elasticsearch.version'] })
 class ElasticsearchMappingSpec extends Specification {
 
-    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
 
     void "Test Elasticsearch connection"() {
 
