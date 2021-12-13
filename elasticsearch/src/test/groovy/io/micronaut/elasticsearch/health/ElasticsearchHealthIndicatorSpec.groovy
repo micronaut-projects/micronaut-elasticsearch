@@ -27,6 +27,7 @@ import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import spock.lang.Requires
 import spock.lang.Specification
 import reactor.core.publisher.Flux
 
@@ -34,9 +35,10 @@ import reactor.core.publisher.Flux
  * @author Puneet Behl
  * @since 1.0.0
  */
+@Requires({ sys['elasticsearch.version'] })
 class ElasticsearchHealthIndicatorSpec extends Specification {
 
-    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
 
     void "test elasticsearch health indicator"() {
         given:

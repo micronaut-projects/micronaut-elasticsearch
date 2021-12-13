@@ -34,6 +34,7 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.core.MainResponse
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import spock.lang.Requires
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -45,11 +46,14 @@ import jakarta.inject.Singleton
  * @author Puneet Behl
  * @since 1.0.0
  */
+@Requires({ sys['elasticsearch.version'] })
 class ElasticsearchSpec extends Specification {
 
     // tag::es-testcontainer[]
-    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearchVersion")
-    @Shared ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
+
+    @Shared
+    ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
 
     // end::es-testcontainer[]
 

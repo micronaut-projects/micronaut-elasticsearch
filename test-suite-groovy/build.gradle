@@ -1,0 +1,32 @@
+plugins {
+    id 'groovy'
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testCompileOnly("io.micronaut:micronaut-inject-groovy:$micronautVersion")
+    testImplementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+    testImplementation("io.micronaut:micronaut-validation")
+    testImplementation("org.spockframework:spock-core:${spockVersion}") {
+        exclude module: 'groovy-all'
+    }
+    testImplementation "io.micronaut.test:micronaut-test-spock"
+
+    // tag::testcontainers-dependencies[]
+    testImplementation "org.testcontainers:spock:$testcontainersVersion"
+    testImplementation "org.testcontainers:elasticsearch:$testcontainersVersion"
+    // end::testcontainers-dependencies[]
+
+    testImplementation project(":elasticsearch")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty('elasticsearch.version', elasticsearchVersion)
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.8")
+    targetCompatibility = JavaVersion.toVersion("1.8")
+}
