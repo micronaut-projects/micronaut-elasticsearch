@@ -14,8 +14,8 @@ dependencies {
     testImplementation "io.micronaut.test:micronaut-test-spock"
 
     // tag::testcontainers-dependencies[]
-    testImplementation "org.testcontainers:spock:$testcontainersVersion"
-    testImplementation "org.testcontainers:elasticsearch:$testcontainersVersion"
+    testImplementation "org.testcontainers:spock"
+    testImplementation "org.testcontainers:elasticsearch"
     // end::testcontainers-dependencies[]
 
     testImplementation project(":elasticsearch")
