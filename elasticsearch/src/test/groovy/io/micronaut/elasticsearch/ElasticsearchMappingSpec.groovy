@@ -29,8 +29,8 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.core.MainResponse
 import org.elasticsearch.client.indices.GetIndexRequest
-import org.elasticsearch.common.xcontent.XContentType
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext
+import org.elasticsearch.xcontent.XContentType
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 import spock.lang.Requires
 import spock.lang.Specification
