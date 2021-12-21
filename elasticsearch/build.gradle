@@ -1,29 +1,27 @@
 plugins {
-    id "io.micronaut.build.internal.module"
+    id 'io.micronaut.build.internal.module'
 }
+
 dependencies {
-    annotationProcessor "io.micronaut:micronaut-graal"
-    api "io.micronaut:micronaut-http"
-    api "io.micronaut:micronaut-validation"
+    annotationProcessor mn.micronaut.graal
     api "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
-
-    compileOnly "io.micronaut:micronaut-inject-java"
-    compileOnly "org.graalvm.nativeimage:svm"
-    compileOnly "io.micronaut:micronaut-management"
-
-    testImplementation "io.projectreactor:reactor-core"
-    testImplementation "io.micronaut:micronaut-runtime"
-    testImplementation "io.micronaut.security:micronaut-security"
-    testImplementation "io.micronaut:micronaut-inject-groovy"
-    testImplementation "io.micronaut:micronaut-inject-java"
-    testImplementation "io.micronaut:micronaut-inject-java-test"
-    testImplementation "org.testcontainers:spock"
-    testImplementation "org.testcontainers:elasticsearch"
-    testImplementation "io.micronaut:micronaut-management"
-    testImplementation "org.codehaus.groovy:groovy-json"
+    api mn.micronaut.http
+    api mn.micronaut.validation
+    compileOnly mn.graal
+    compileOnly mn.micronaut.inject.java
+    compileOnly mn.micronaut.management
+    testImplementation 'org.testcontainers:elasticsearch'
+    testImplementation 'org.testcontainers:spock'
+    testImplementation mn.groovy.json
+    testImplementation mn.micronaut.inject.groovy
+    testImplementation mn.micronaut.inject.java
+    testImplementation mn.micronaut.inject.java.test
+    testImplementation mn.micronaut.management
+    testImplementation mn.micronaut.runtime
+    testImplementation mn.micronaut.security
+    testImplementation mn.reactor
 }
 
 tasks.named('test') {
-    systemProperty('elasticsearch.version', elasticsearchVersion)
+    systemProperty 'elasticsearch.version', elasticsearchVersion
 }
-

@@ -6,10 +6,24 @@ pluginManagement {
 }
 
 plugins {
-    id 'io.micronaut.build.shared.settings' version '5.0.3'
+    id 'io.micronaut.build.shared.settings' version '5.1.0'
 }
 
-rootProject.name = 'elasticsearch-root'
+rootProject.name = 'micronaut-elasticsearch'
 
 include 'elasticsearch'
 include 'test-suite-groovy'
+
+enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
+enableFeaturePreview 'VERSION_CATALOGS'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+    versionCatalogs {
+        mn {
+            from "io.micronaut:micronaut-bom:${providers.gradleProperty('micronautVersion').get()}"
+        }
+    }
+}
