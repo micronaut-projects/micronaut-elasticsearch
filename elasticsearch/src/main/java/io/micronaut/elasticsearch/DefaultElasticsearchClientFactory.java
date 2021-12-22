@@ -19,9 +19,15 @@ import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.ArrayUtils;
+
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
 
 /**
  * The default Factory for creating Elasticsearch client.
@@ -52,6 +58,18 @@ public class DefaultElasticsearchClientFactory {
     @Bean(preDestroy = "close")
     RestClient restClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
         return restClientBuilder(elasticsearchConfiguration).build();
+    }
+
+    /**
+     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
+     * @return The Elasticsearch Client
+     */
+    @Bean
+    ElasticsearchClient elasticsearchClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
+      RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
+
+      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+      return new ElasticsearchClient(transport);
     }
 
     /**
