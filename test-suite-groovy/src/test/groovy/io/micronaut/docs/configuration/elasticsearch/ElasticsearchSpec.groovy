@@ -25,6 +25,8 @@ import io.micronaut.context.annotation.Replaces
 import org.apache.http.auth.AuthScope
 
 //end::httpClientFactoryImports[]
+import co.elastic.clients.elasticsearch.ElasticsearchClient
+import co.elastic.clients.elasticsearch.core.InfoResponse
 import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
@@ -79,6 +81,34 @@ class ElasticsearchSpec extends Specification {
         then:
         "docker-cluster" == response.getClusterName()
         Version.fromString(ELASTICSEARCH_VERSION).toString() == response.getVersion().getNumber()
+
+        cleanup:
+        applicationContext.close()
+        elasticsearch.stop()
+    }
+    //end::es-dbstats[]
+
+    //tag::es-stats[]
+    void "Test simple info for Elasticsearch stats using the Elasticsearch Client"() {
+        given:
+        //tag::es-conf[]
+        elasticsearch.start()
+        ApplicationContext applicationContext = ApplicationContext.run("elasticsearch.httpHosts": "http://${elasticsearch.getHttpHostAddress()}", "test")
+        //end::es-conf
+        String stats
+
+        when:
+        //tag::es-bean[]
+        ElasticsearchClient client = applicationContext.getBean(ElasticsearchClient)
+        //end::es-bean[]
+        //tag::query[]
+        InfoResponse response =
+                client.info() // <1>
+        //end::query[]
+
+        then:
+        "docker-cluster" == response.clusterName()
+        Version.fromString(ELASTICSEARCH_VERSION).toString() == response.version().number()
 
         cleanup:
         applicationContext.close()
