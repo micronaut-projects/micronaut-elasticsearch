@@ -73,10 +73,8 @@ class ElasticsearchSpec extends Specification {
         //tag::es-bean[]
         RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
         //end::es-bean[]
-        //tag::query[]
         MainResponse response =
                 client.info(RequestOptions.DEFAULT) // <1>
-        //end::query[]
 
         then:
         "docker-cluster" == response.getClusterName()

@@ -1,2 +1,2 @@
-Micronaut supports automatic configuration of Elasticsearch https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html[Java REST Client^] via the `elasticsearch` module.
+Micronaut supports automatic configuration of Elasticsearch https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html[ElasticsearchClient^] via the `elasticsearch` module.
 
