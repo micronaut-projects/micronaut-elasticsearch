@@ -19,6 +19,9 @@ import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.ArrayUtils;
+import jakarta.inject.Singleton;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
@@ -64,11 +67,11 @@ public class DefaultElasticsearchClientFactory {
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
      * @return The Elasticsearch Client
      */
-    @Bean
-    ElasticsearchClient elasticsearchClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
+    @Singleton
+    ElasticsearchClient elasticsearchClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
       RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
 
-      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
       return new ElasticsearchClient(transport);
     }
 
