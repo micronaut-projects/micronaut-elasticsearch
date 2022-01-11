@@ -65,7 +65,9 @@ public class DefaultElasticsearchClientFactory {
 
     /**
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
-     * @return The Elasticsearch Client
+     * @param objectMapper The {@link ObjectMapper} object.
+     * @return The ElasticsearchClient
+     * @since 4.1.1
      */
     @Singleton
     ElasticsearchClient elasticsearchClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
