@@ -22,7 +22,7 @@ import io.micronaut.management.health.indicator.HealthIndicator;
 import io.micronaut.management.health.indicator.HealthResult;
 import org.reactivestreams.Publisher;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.cluster.HealthResponse;
 import jakarta.inject.Singleton;
 import java.io.IOException;

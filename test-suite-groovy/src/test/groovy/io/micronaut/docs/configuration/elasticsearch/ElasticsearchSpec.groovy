@@ -25,6 +25,7 @@ import io.micronaut.context.annotation.Replaces
 import org.apache.http.auth.AuthScope
 
 //end::httpClientFactoryImports[]
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient
 import co.elastic.clients.elasticsearch.ElasticsearchClient
 import co.elastic.clients.elasticsearch.core.InfoResponse
 import org.apache.http.auth.UsernamePasswordCredentials
@@ -86,19 +87,14 @@ class ElasticsearchSpec extends Specification {
     }
     //end::es-dbstats[]
 
-    //tag::es-stats[]
-    void "Test simple info for Elasticsearch stats using the Elasticsearch Client"() {
+    void "Test simple info for Elasticsearch stats using the ElasticsearchClient"() {
         given:
-        //tag::es-conf[]
         elasticsearch.start()
         ApplicationContext applicationContext = ApplicationContext.run("elasticsearch.httpHosts": "http://${elasticsearch.getHttpHostAddress()}", "test")
-        //end::es-conf
         String stats
 
         when:
-        //tag::es-bean[]
         ElasticsearchClient client = applicationContext.getBean(ElasticsearchClient)
-        //end::es-bean[]
         //tag::query[]
         InfoResponse response =
                 client.info() // <1>
@@ -112,7 +108,26 @@ class ElasticsearchSpec extends Specification {
         applicationContext.close()
         elasticsearch.stop()
     }
-    //end::es-dbstats[]
+
+    void "Test simple info for Elasticsearch stats using the ElasticsearchAsyncClient"() {
+        given:
+        elasticsearch.start()
+        ApplicationContext applicationContext = ApplicationContext.run("elasticsearch.httpHosts": "http://${elasticsearch.getHttpHostAddress()}", "test")
+        String stats
+
+        when:
+        ElasticsearchAsyncClient client = applicationContext.getBean(ElasticsearchAsyncClient)
+        InfoResponse response =
+                client.info().get() // <1>
+
+        then:
+        "docker-cluster" == response.clusterName()
+        Version.fromString(ELASTICSEARCH_VERSION).toString() == response.version().number()
+
+        cleanup:
+        applicationContext.close()
+        elasticsearch.stop()
+    }
 
     void "Test overiding HttpAsyncClientBuilder bean"() {
 

@@ -27,6 +27,7 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
@@ -75,6 +76,20 @@ public class DefaultElasticsearchClientFactory {
 
       ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
       return new ElasticsearchClient(transport);
+    }
+
+    /**
+     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
+     * @param objectMapper The {@link ObjectMapper} object.
+     * @return The ElasticsearchAsyncClient
+     * @since 4.1.1
+     */
+    @Singleton
+    ElasticsearchAsyncClient elasticsearchAsyncClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
+      RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
+
+      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
+      return new ElasticsearchAsyncClient(transport);
     }
 
     /**
