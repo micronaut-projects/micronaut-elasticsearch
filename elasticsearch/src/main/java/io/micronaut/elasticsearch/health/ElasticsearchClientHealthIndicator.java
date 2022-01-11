@@ -46,14 +46,14 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
 
     private static final String NAME = "elasticsearchclient";
 
-    private final ElasticsearchClient client;
+    private final ElasticsearchAsyncClient client;
 
     /**
      * Constructor.
      *
      * @param esClient The Elasticsearch high level REST client.
      */
-    public ElasticsearchClientHealthIndicator(ElasticsearchClient client) {
+    public ElasticsearchClientHealthIndicator(ElasticsearchAsyncClient client) {
         this.client = client;
     }
 
@@ -68,20 +68,22 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
     public Publisher<HealthResult> getResult() {
         return (subscriber -> {
             final HealthResult.Builder resultBuilder = HealthResult.builder(NAME);
-
-            HealthResult result;
             try {
-                HealthResponse health = client.cluster().health();
-                HealthStatus status = health.status() == co.elastic.clients.elasticsearch._types.HealthStatus.Red ? DOWN : UP;
-
-                result = resultBuilder.status(status)
-                    .details(health).build();
-
+                client.cluster().health().handle((health, exception) -> {
+                    if(exception != null) {
+                        subscriber.onNext(resultBuilder.status(DOWN).exception(exception).build());
+                        subscriber.onComplete();
+                    } else {
+                        HealthStatus status = health.status() == co.elastic.clients.elasticsearch._types.HealthStatus.Red ? DOWN : UP;
+                        subscriber.onNext(resultBuilder.status(status).details(health).build());
+                        subscriber.onComplete();
+                    }
+                    return health;
+                });
             } catch (IOException e) {
-                result = resultBuilder.status(DOWN).exception(e).build();
+                subscriber.onNext(resultBuilder.status(DOWN).exception(e).build());
+                subscriber.onComplete();
             }
-            subscriber.onNext(result);
-            subscriber.onComplete();
         });
     }
 }
