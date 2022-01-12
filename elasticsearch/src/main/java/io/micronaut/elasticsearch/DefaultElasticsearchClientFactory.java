@@ -65,31 +65,37 @@ public class DefaultElasticsearchClientFactory {
     }
 
     /**
-     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
-     * @param objectMapper The {@link ObjectMapper} object.
-     * @return The ElasticsearchClient
+     * @param transport The {@link ElasticsearchTransport} object.
+     * @return The ElasticsearchClient.
      * @since 4.1.1
      */
     @Singleton
-    ElasticsearchClient elasticsearchClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
-      RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
-
-      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
-      return new ElasticsearchClient(transport);
+    ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {
+        return new ElasticsearchClient(transport);
     }
 
     /**
-     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
-     * @param objectMapper The {@link ObjectMapper} object.
-     * @return The ElasticsearchAsyncClient
+     * @param transport The {@link ElasticsearchTransport} object.
+     * @return The ElasticsearchAsyncClient.
      * @since 4.1.1
      */
     @Singleton
-    ElasticsearchAsyncClient elasticsearchAsyncClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
-      RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
+    ElasticsearchAsyncClient elasticsearchAsyncClient(ElasticsearchTransport transport) {
+        return new ElasticsearchAsyncClient(transport);
+    }
 
-      ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
-      return new ElasticsearchAsyncClient(transport);
+    /**
+     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object.
+     * @param objectMapper The {@link ObjectMapper} object.
+     * @return The {@link ElasticsearchTransport}.
+     * @since 4.1.1
+     */
+    @Bean(preDestroy="close")
+    ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
+        RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
+
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
+        return transport;
     }
 
     /**
