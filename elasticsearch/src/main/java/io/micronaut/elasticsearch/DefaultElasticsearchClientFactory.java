@@ -104,14 +104,14 @@ public class DefaultElasticsearchClientFactory {
      */
     protected RestClientBuilder restClientBuilder(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
         RestClientBuilder builder = RestClient.builder(elasticsearchConfiguration.getHttpHosts())
-                .setRequestConfigCallback(requestConfigBuilder -> {
-                    requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
-                    return requestConfigBuilder;
-                })
-                .setHttpClientConfigCallback(httpClientBuilder -> {
-                    httpClientBuilder = elasticsearchConfiguration.httpAsyncClientBuilder;
-                    return httpClientBuilder;
-                });
+            .setRequestConfigCallback(requestConfigBuilder -> {
+                requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
+                return requestConfigBuilder;
+            })
+        .setHttpClientConfigCallback(httpClientBuilder -> {
+            httpClientBuilder = elasticsearchConfiguration.httpAsyncClientBuilder;
+            return httpClientBuilder;
+        });
 
         if (ArrayUtils.isNotEmpty(elasticsearchConfiguration.getDefaultHeaders())) {
             builder.setDefaultHeaders(elasticsearchConfiguration.getDefaultHeaders());
