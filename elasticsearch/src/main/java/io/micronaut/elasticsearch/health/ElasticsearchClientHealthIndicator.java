@@ -23,7 +23,6 @@ import io.micronaut.management.health.indicator.HealthResult;
 import org.reactivestreams.Publisher;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
-import co.elastic.clients.elasticsearch.cluster.HealthResponse;
 import jakarta.inject.Singleton;
 import java.io.IOException;
 
@@ -51,7 +50,7 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
     /**
      * Constructor.
      *
-     * @param esClient The Elasticsearch high level REST client.
+     * @param client The Elasticsearch high level REST client.
      */
     public ElasticsearchClientHealthIndicator(ElasticsearchAsyncClient client) {
         this.client = client;
@@ -70,7 +69,7 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
             final HealthResult.Builder resultBuilder = HealthResult.builder(NAME);
             try {
                 client.cluster().health().handle((health, exception) -> {
-                    if(exception != null) {
+                    if (exception != null) {
                         subscriber.onNext(resultBuilder.status(DOWN).exception(exception).build());
                         subscriber.onComplete();
                     } else {
