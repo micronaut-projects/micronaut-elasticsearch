@@ -67,7 +67,7 @@ public class DefaultElasticsearchClientFactory {
     /**
      * @param transport The {@link ElasticsearchTransport} object.
      * @return The ElasticsearchClient.
-     * @since 4.1.1
+     * @since 4.2.0
      */
     @Singleton
     ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {
@@ -77,7 +77,7 @@ public class DefaultElasticsearchClientFactory {
     /**
      * @param transport The {@link ElasticsearchTransport} object.
      * @return The ElasticsearchAsyncClient.
-     * @since 4.1.1
+     * @since 4.2.0
      */
     @Singleton
     ElasticsearchAsyncClient elasticsearchAsyncClient(ElasticsearchTransport transport) {
@@ -88,7 +88,7 @@ public class DefaultElasticsearchClientFactory {
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object.
      * @param objectMapper The {@link ObjectMapper} object.
      * @return The {@link ElasticsearchTransport}.
-     * @since 4.1.1
+     * @since 4.2.0
      */
     @Bean(preDestroy = "close")
     ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
