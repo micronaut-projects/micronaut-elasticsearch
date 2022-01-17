@@ -25,6 +25,9 @@ import io.micronaut.context.annotation.Replaces
 import org.apache.http.auth.AuthScope
 
 //end::httpClientFactoryImports[]
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient
+import co.elastic.clients.elasticsearch.ElasticsearchClient
+import co.elastic.clients.elasticsearch.core.InfoResponse
 import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
@@ -71,10 +74,8 @@ class ElasticsearchSpec extends Specification {
         //tag::es-bean[]
         RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
         //end::es-bean[]
-        //tag::query[]
         MainResponse response =
                 client.info(RequestOptions.DEFAULT) // <1>
-        //end::query[]
 
         then:
         "docker-cluster" == response.getClusterName()
@@ -85,6 +86,48 @@ class ElasticsearchSpec extends Specification {
         elasticsearch.stop()
     }
     //end::es-dbstats[]
+
+    void "Test simple info for Elasticsearch stats using the ElasticsearchClient"() {
+        given:
+        elasticsearch.start()
+        ApplicationContext applicationContext = ApplicationContext.run("elasticsearch.httpHosts": "http://${elasticsearch.getHttpHostAddress()}", "test")
+        String stats
+
+        when:
+        ElasticsearchClient client = applicationContext.getBean(ElasticsearchClient)
+        //tag::query[]
+        InfoResponse response =
+                client.info() // <1>
+        //end::query[]
+
+        then:
+        "docker-cluster" == response.clusterName()
+        Version.fromString(ELASTICSEARCH_VERSION).toString() == response.version().number()
+
+        cleanup:
+        applicationContext.close()
+        elasticsearch.stop()
+    }
+
+    void "Test simple info for Elasticsearch stats using the ElasticsearchAsyncClient"() {
+        given:
+        elasticsearch.start()
+        ApplicationContext applicationContext = ApplicationContext.run("elasticsearch.httpHosts": "http://${elasticsearch.getHttpHostAddress()}", "test")
+        String stats
+
+        when:
+        ElasticsearchAsyncClient client = applicationContext.getBean(ElasticsearchAsyncClient)
+        InfoResponse response =
+                client.info().get() // <1>
+
+        then:
+        "docker-cluster" == response.clusterName()
+        Version.fromString(ELASTICSEARCH_VERSION).toString() == response.version().number()
+
+        cleanup:
+        applicationContext.close()
+        elasticsearch.stop()
+    }
 
     void "Test overiding HttpAsyncClientBuilder bean"() {
 

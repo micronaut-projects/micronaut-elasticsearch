@@ -19,9 +19,19 @@ import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.ArrayUtils;
+import jakarta.inject.Singleton;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
 
 /**
  * The default Factory for creating Elasticsearch client.
@@ -55,19 +65,54 @@ public class DefaultElasticsearchClientFactory {
     }
 
     /**
+     * @param transport The {@link ElasticsearchTransport} object.
+     * @return The ElasticsearchClient.
+     * @since 4.2.0
+     */
+    @Singleton
+    ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {
+        return new ElasticsearchClient(transport);
+    }
+
+    /**
+     * @param transport The {@link ElasticsearchTransport} object.
+     * @return The ElasticsearchAsyncClient.
+     * @since 4.2.0
+     */
+    @Singleton
+    ElasticsearchAsyncClient elasticsearchAsyncClient(ElasticsearchTransport transport) {
+        return new ElasticsearchAsyncClient(transport);
+    }
+
+    /**
+     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object.
+     * @param objectMapper The {@link ObjectMapper} object.
+     * @return The {@link ElasticsearchTransport}.
+     * @since 4.2.0
+     */
+    @Singleton
+    @Bean(preDestroy = "close")
+    ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
+        RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
+
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
+        return transport;
+    }
+
+    /**
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
      * @return The {@link RestClientBuilder}
      */
     protected RestClientBuilder restClientBuilder(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
         RestClientBuilder builder = RestClient.builder(elasticsearchConfiguration.getHttpHosts())
-                .setRequestConfigCallback(requestConfigBuilder -> {
-                    requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
-                    return requestConfigBuilder;
-                })
-                .setHttpClientConfigCallback(httpClientBuilder -> {
-                    httpClientBuilder = elasticsearchConfiguration.httpAsyncClientBuilder;
-                    return httpClientBuilder;
-                });
+            .setRequestConfigCallback(requestConfigBuilder -> {
+                requestConfigBuilder = elasticsearchConfiguration.requestConfigBuilder;
+                return requestConfigBuilder;
+            })
+        .setHttpClientConfigCallback(httpClientBuilder -> {
+            httpClientBuilder = elasticsearchConfiguration.httpAsyncClientBuilder;
+            return httpClientBuilder;
+        });
 
         if (ArrayUtils.isNotEmpty(elasticsearchConfiguration.getDefaultHeaders())) {
             builder.setDefaultHeaders(elasticsearchConfiguration.getDefaultHeaders());

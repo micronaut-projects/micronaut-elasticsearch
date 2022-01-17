@@ -5,6 +5,7 @@ plugins {
 dependencies {
     annotationProcessor mn.micronaut.graal
     api "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
+    api "co.elastic.clients:elasticsearch-java:$elasticsearchVersion"
     api mn.micronaut.http
     api mn.micronaut.validation
     compileOnly mn.graal
