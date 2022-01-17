@@ -117,7 +117,7 @@
 
 
 <div class="paragraph">
-<p>Micronaut supports automatic configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html" target="_blank" rel="noopener">Java REST Client</a> via the <code>elasticsearch</code> module.</p>
+<p>Micronaut supports automatic configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html" target="_blank" rel="noopener">ElasticsearchClient</a> via the <code>elasticsearch</code> module.</p>
 </div>
 
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
@@ -191,24 +191,24 @@
 <p>See the API for <a href="../api/io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
 </div>
 <div class="paragraph">
-<p>Once you have the above configuration in place then you can inject the <code>org.elasticsearch.client.RestHighLevelClient</code> or <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the High Level REST Client:</p>
+<p>Once you have the above configuration in place then you can inject the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code>, the <code>co.elastic.clients.elasticsearch.ElasticsearchAsyncClient</code>, the <code>org.elasticsearch.client.RestClient</code> or the deprecated <code>org.elasticsearch.client.RestHighLevelClient</code> bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">MainResponse response =
-        client.info(RequestOptions.DEFAULT) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">InfoResponse response =
+        client.info() <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>client</code> is an instance of the <code>org.elasticsearch.client.RestHighLevelClient</code> bean.</td>
+<td><code>client</code> is an instance of the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code> bean.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For more information on executing different operations using Elasticsearch High Level REST Client please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">Elasticsearch Documentation</a>.</p>
+<p>For more information on executing different operations using ElasticsearchClient please read the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html" target="_blank" rel="noopener">Elasticsearch Documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -302,12 +302,24 @@ static class HttpAsyncClientBuilderFactory {
 
 
 <div class="paragraph">
-<p>When the <code>elasticsearch</code> module is activated a <a href="../api/io/micronaut/configuration/elasticsearch/health/ElasticsearchHealthIndicator.html">ElasticsearchHealthIndicator</a> is
+<p>When the <code>elasticsearch</code> module is activated a <a href="../api/io/micronaut/configuration/elasticsearch/health/ElasticsearchClientHealthIndicator.html">ElasticsearchClientHealthIndicator</a> is
 activated resulting in the <code>/health</code> endpoint and <a href="https://docs.micronaut.io/latest/api/io/micronaut/health/CurrentHealthStatus.html">CurrentHealthStatus</a>
 interface resolving the health of the Elasticsearch cluster.</p>
 </div>
 <div class="paragraph">
-<p>The only configuration option supported is to enable or disable the indicator.</p>
+<p>To enable or disable the indicator use:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
+  health:
+    elasticsearch:
+      enabled: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To use the deprecated health indicator use:</p>
 </div>
 <div class="listingblock">
 <div class="title">application.yml</div>
