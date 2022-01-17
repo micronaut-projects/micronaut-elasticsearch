@@ -90,7 +90,7 @@ public class DefaultElasticsearchClientFactory {
      * @return The {@link ElasticsearchTransport}.
      * @since 4.2.0
      */
-    @Bean(preDestroy = "close")
+    @Singleton
     ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
         RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
 
