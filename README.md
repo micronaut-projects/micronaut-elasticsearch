@@ -2,6 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.micronaut.elasticsearch/micronaut-elasticsearch.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.micronaut.elasticsearch%22%20AND%20a:%22micronaut-elasticsearch%22)
 [![Build Status](https://github.com/micronaut-projects/micronaut-elasticsearch/workflows/Java%20CI/badge.svg)](https://github.com/micronaut-projects/micronaut-elasticsearch/actions)
+[![Revved up by Gradle Enterprise](https://img.shields.io/badge/Revved%20up%20by-Gradle%20Enterprise-06A0CE?logo=Gradle&labelColor=02303A)](https://ge.micronaut.io/scans)
 
 Micronaut Elasticsearch includes integration between [Micronaut](https://micronaut.io/) and [Elasticsearch](https://www.elastic.co/).
 
