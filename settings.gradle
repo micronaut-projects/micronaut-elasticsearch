@@ -15,7 +15,6 @@ include 'elasticsearch'
 include 'test-suite-groovy'
 
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
-enableFeaturePreview 'VERSION_CATALOGS'
 
 dependencyResolutionManagement {
     repositories {
