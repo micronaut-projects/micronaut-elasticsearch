@@ -1,11 +1,6 @@
 {
   "resources":[
-    {"pattern":"\\QMETA-INF/org/apache/logging/log4j/core/config/plugins/Log4j2Plugins.dat\\E"}, 
     {"pattern":"\\QMETA-INF/services/javax.script.ScriptEngineFactory\\E"},
-    {"pattern":"\\QMETA-INF/services/org.apache.logging.log4j.spi.Provider\\E"},
-    {"pattern":"\\QMETA-INF/services/org.apache.logging.log4j.util.PropertySource\\E"}, 
-    {"pattern":"\\QMETA-INF/services/org.elasticsearch.common.xcontent.XContentBuilderExtension\\E"}, 
-    {"pattern":"\\QMETA-INF/services/org.elasticsearch.plugins.spi.NamedXContentProvider\\E"}, 
     {"pattern":"\\Qjavax/crypto/Cipher.class\\E"},
     {"pattern":"\\Qmozilla/public-suffix-list.txt\\E"},
     {"pattern":"\\Qorg/apache/http/nio/client/version.properties\\E"}, 
