@@ -47,7 +47,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * We substitute it with an implementation which does not use serialization.
  *
- * Forked from Quarkus: https://github.com/quarkusio/quarkus/blob/c9cba824e8812fa3f15474b8382ac5d90f7238aa/extensions/elasticsearch-rest-client/runtime/src/main/java/io/quarkus/elasticsearch/restclient/runtime/graal/Substitute_RestClient.java
+ * Forked from Quarkus: https://github.com/quarkusio/quarkus/blob/main/extensions/elasticsearch-rest-client-common/runtime/src/main/java/io/quarkus/elasticsearch/restclient/common/runtime/graal/Substitute_RestClient.java
  *
  * @author Iván López
  * @since 2.0.0
@@ -109,7 +109,7 @@ final class RestClientSubstitutions {
             this(null);
         }
 
-        protected HttpHost getKey(final HttpHost host) {
+        private HttpHost getKey(final HttpHost host) {
             if (host.getPort() <= 0) {
                 final int port;
                 try {
