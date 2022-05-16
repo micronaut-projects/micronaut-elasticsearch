@@ -110,7 +110,7 @@
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/introduction.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/introduction.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -123,7 +123,7 @@
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/releaseHistory.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/releaseHistory.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -139,7 +139,7 @@
 <h1 id="configuration"><a class="anchor" href="#configuration"></a>3 Configuration</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/configuration.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/configuration.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -157,7 +157,7 @@
 <td class="content">
 <div class="title">Using the CLI</div>
 <div class="paragraph">
-<p>If you are creating your project using the Micronaut CLI, supply the <code>elasticsearch</code> feature to configure the Elasticsearch Java REST Client in your project:</p>
+<p>If you are creating your project using the Micronaut CLI, supply the <code>elasticsearch</code> feature to configure the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html" target="_blank" rel="noopener">ElasticsearchClient</a> in your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -169,12 +169,12 @@
 </table>
 </div>
 <div class="paragraph">
-<p>To configure the Elasticsearch Java REST Client you should first add <code>elasticsearch</code> module to your classpath:</p>
+<p>To configure the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html" target="_blank" rel="noopener">ElasticsearchClient</a> you should first add <code>elasticsearch</code> module to your classpath:</p>
 </div>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compile "io.micronaut.elasticsearch:micronaut-elasticsearch"</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "io.micronaut.elasticsearch:micronaut-elasticsearch"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -191,7 +191,7 @@
 <p>See the API for <a href="../api/io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
 </div>
 <div class="paragraph">
-<p>Once you have the above configuration in place then you can inject the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code>, the <code>co.elastic.clients.elasticsearch.ElasticsearchAsyncClient</code>, the <code>org.elasticsearch.client.RestClient</code> or the deprecated <code>org.elasticsearch.client.RestHighLevelClient</code> bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:</p>
+<p>Once you have the above configuration in place then you can inject the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code>, the <code>co.elastic.clients.elasticsearch.ElasticsearchAsyncClient</code> or the <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -245,7 +245,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.context.annotation.Replaces
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import jakarta.inject.Singleton
 import org.apache.http.auth.AuthScope
 
 @Factory
@@ -294,7 +294,7 @@ static class HttpAsyncClientBuilderFactory {
 <h1 id="healthChecks"><a class="anchor" href="#healthChecks"></a>4 Health Checks</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/healthChecks.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/healthChecks.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -339,7 +339,7 @@ interface resolving the health of the Elasticsearch cluster.</p>
 <h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM Support</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/graalvm.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/graalvm.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -365,7 +365,7 @@ information.
 <h1 id="repository"><a class="anchor" href="#repository"></a>6 Repository</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.2.x/src/main/docs/guide/repository.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/repository.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
