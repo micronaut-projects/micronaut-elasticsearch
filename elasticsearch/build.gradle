@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     annotationProcessor mn.micronaut.graal
-    api(libs.managed.elasticsearch.rest.high.level.client)
     api(libs.managed.elasticsearch.java)
     api mn.micronaut.http
     api mn.micronaut.validation
@@ -24,5 +23,5 @@ dependencies {
 }
 
 tasks.named('test') {
-    systemProperty 'elasticsearch.version', elasticsearchVersion
+    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
 }
