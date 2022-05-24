@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform(libs.boms.micronaut))
+    testImplementation(platform(libs.micronaut.bom))
     testCompileOnly mn.micronaut.inject.groovy
     testImplementation mn.micronaut.validation
     testImplementation mn.spock

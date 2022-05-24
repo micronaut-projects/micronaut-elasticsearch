@@ -7,10 +7,9 @@ micronaut = "3.4.3"
 
 [libraries]
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
-managed-elasticsearch-rest-high-level-client = { module = "org.elasticsearch.client:elasticsearch-rest-high-level-client", version.ref = "managed-elasticsearch" }
 
-# BOMs
-boms-micronaut = { module = "io.micronaut:micronaut-bom", version.ref = "micronaut" }
+# Micronaut
+micronaut-bom = { module = "io.micronaut:micronaut-bom", version.ref = "micronaut" }
 
 testcontainers-elasticsearch = { module = "org.testcontainers:elasticsearch" }
 testcontainers-spock = { module = "org.testcontainers:spock" }
