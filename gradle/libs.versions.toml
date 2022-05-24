@@ -2,7 +2,7 @@
 managed-elasticsearch = "8.2.0"
 
 # Micronaut
-micronaut = "3.4.3"
+micronaut = "3.4.4"
 
 
 [libraries]
