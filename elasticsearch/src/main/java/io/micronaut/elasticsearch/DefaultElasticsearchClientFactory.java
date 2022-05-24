@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
@@ -43,17 +42,6 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 @Requires(beans = DefaultElasticsearchConfigurationProperties.class)
 @Factory
 public class DefaultElasticsearchClientFactory {
-
-    /**
-     * Create the {@link RestHighLevelClient} bean for the given configuration.
-     *
-     * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object
-     * @return A {@link RestHighLevelClient} bean
-     */
-    @Bean(preDestroy = "close")
-    RestHighLevelClient restHighLevelClient(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration) {
-        return new RestHighLevelClient(restClientBuilder(elasticsearchConfiguration));
-    }
 
     /**
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object

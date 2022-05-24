@@ -16,22 +16,14 @@
 
 package io.micronaut.elasticsearch
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient
+import co.elastic.clients.elasticsearch._types.Result
+import co.elastic.clients.elasticsearch.core.*
+import co.elastic.clients.elasticsearch.indices.ExistsRequest
 import io.micronaut.context.ApplicationContext
-import org.elasticsearch.Version
-import org.elasticsearch.action.DocWriteResponse
-import org.elasticsearch.action.delete.DeleteRequest
-import org.elasticsearch.action.delete.DeleteResponse
-import org.elasticsearch.action.get.GetRequest
-import org.elasticsearch.action.get.GetResponse
-import org.elasticsearch.action.index.IndexRequest
-import org.elasticsearch.action.index.IndexResponse
-import org.elasticsearch.client.RequestOptions
-import org.elasticsearch.client.RestHighLevelClient
-import org.elasticsearch.client.core.MainResponse
-import org.elasticsearch.client.indices.GetIndexRequest
-import org.elasticsearch.search.fetch.subphase.FetchSourceContext
-import org.elasticsearch.xcontent.XContentType
+import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import org.testcontainers.spock.Testcontainers
 import spock.lang.Requires
 import spock.lang.Specification
 
@@ -40,136 +32,129 @@ import spock.lang.Specification
  * @author Puneet Behl
  * @since 1.0.1
  */
+@Testcontainers
 @Requires({ sys['elasticsearch.version'] })
 class ElasticsearchMappingSpec extends Specification {
 
-    final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
+    static final String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
+    static final ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+            .withExposedPorts(9200)
+            .withEnv("xpack.security.enabled", "false")
+            .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started\".*"))
+
+    void setupSpec() {
+        container.start()
+    }
+
+    void cleanupSpec() {
+        container.stop()
+    }
 
     void "Test Elasticsearch connection"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
-        container.start()
-
-        ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
+        ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.httpHostAddress)
 
         expect:
-        applicationContext.containsBean(RestHighLevelClient)
-        applicationContext.getBean(RestHighLevelClient).ping(RequestOptions.DEFAULT)
-        MainResponse response = applicationContext.getBean(RestHighLevelClient).info(RequestOptions.DEFAULT)
-        System.out.println(String.format("cluser: %s, node: %s, version: %s", response.getClusterName(), response.getNodeName(), response.getVersion()))
+        applicationContext.containsBean(ElasticsearchClient)
+        applicationContext.getBean(ElasticsearchClient).ping()
+        InfoResponse response = applicationContext.getBean(ElasticsearchClient).info()
+        System.out.println(String.format("cluser: %s, node: %s, version: %s %s", response.clusterName(), response.name(), response.version().number(), response.version().buildDate()))
 
         cleanup:
         applicationContext.close()
-        container.stop()
     }
 
-    void "Test Elasticsearch(7.x) Mapping API"() {
+    void "Test Elasticsearch(8.x) Mapping API"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
-        container.start()
-
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())
-        RestHighLevelClient client = applicationContext.getBean(RestHighLevelClient)
+        ElasticsearchClient client = applicationContext.getBean(ElasticsearchClient)
 
         expect: "Make sure the version of ES is up to date because these tests may cause unexpected results"
-        client.info(RequestOptions.DEFAULT).getVersion().getNumber().equals(Version.fromString(ELASTICSEARCH_VERSION).toString())
+        ELASTICSEARCH_VERSION == client.info().version().number()
 
         when:
-        GetIndexRequest getIndexRequest = new GetIndexRequest("posts")
+        ExistsRequest existsRequest = new ExistsRequest.Builder().index("posts").build()
 
         then: "index does not exists"
-        !client.indices().exists(getIndexRequest, RequestOptions.DEFAULT)
+        !client.indices().exists(existsRequest).value()
 
         when: "create index request"
-        IndexRequest request = new IndexRequest(
-                "posts",
-                "doc",
-                "1")
-        String jsonString = "{" +
-                "\"user\":\"kimchy\"," +
-                "\"postDate\":\"2013-01-30\"," +
-                "\"message\":\"trying out Elasticsearch\"" +
-                "}"
+        IndexRequest.Builder<?> requestBuilder = new IndexRequest.Builder<>()
+                .index("posts")
+                .id("1")
 
-        request.source(jsonString, XContentType.JSON)
-        IndexResponse response = client.index(request, RequestOptions.DEFAULT)
+        Map<String, Object> document = new HashMap<>()
+        document.put("user", "kimchy")
+        document.put("postDate", "2013-01-30")
+        document.put("message", "trying out Elasticsearch")
+        requestBuilder.document(document)
+
+        IndexResponse response = client.index(requestBuilder.build())
 
         then: "verify version and result"
-        response.getIndex() == "posts"
-        response.getVersion() == 1
-        response.getResult() == DocWriteResponse.Result.CREATED
+        response.index() == "posts"
+        response.version() == 1
+        response.result() == Result.Created
 
         when: "update index request"
-        request = new IndexRequest(
-                "posts",
-                "doc",
-                "1")
-        jsonString = "{" +
-                "\"user\":\"kimchy1\"," +
-                "\"postDate\":\"2018-10-30\"," +
-                "\"message\":\"Trying out Elasticsearch6\"" +
-                "}"
+        requestBuilder = new IndexRequest.Builder<>()
+                .index("posts")
+                .id("1")
 
-        request.source(jsonString, XContentType.JSON)
-        response = client.index(request, RequestOptions.DEFAULT)
+        document = new HashMap<>()
+        document.put("user", "kimchy1")
+        document.put("postDate", "2018-10-30")
+        document.put("message", "Trying out Elasticsearch6")
+        requestBuilder.document(document)
+
+        response = client.index(requestBuilder.build())
 
         then: "verify version and result"
-        response.getIndex() == "posts"
-        response.getVersion() == 2
-        response.getResult() == DocWriteResponse.Result.UPDATED
+        response.index() == "posts"
+        response.version() == 2
+        response.result() == Result.Updated
 
         when: "get request"
-        GetRequest getRequest = new GetRequest(
-                "posts",
-                "doc",
-                "1").
-                fetchSourceContext(FetchSourceContext.DO_NOT_FETCH_SOURCE)
 
-        String[] includes = ["message", "*Date"]
-        String[] excludes = []
-        FetchSourceContext fetchSourceContext =
-                new FetchSourceContext(true, includes, excludes)
-        getRequest.fetchSourceContext(fetchSourceContext)
+        GetRequest getRequest = new GetRequest.Builder()
+                .index("posts")
+                .id("1")
+                .sourceIncludes("message", "*Date")
+                .build()
 
-
-        GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT)
+        GetResponse<Map> getResponse = client.get(getRequest, Map.class)
 
         then: "verify source"
-        getResponse.getType() == "doc"
-        getResponse.getIndex() == "posts"
-        getResponse.isExists()
-        getResponse.getVersion() == 2
-        getResponse.getSourceAsMap() == [postDate:"2018-10-30", message:"Trying out Elasticsearch6"]
+        getResponse.index() == "posts"
+        getResponse.version() == 2
+        getResponse.source() == [postDate: "2018-10-30", message: "Trying out Elasticsearch6"]
 
 
         when: "exits request"
-        getRequest = new GetRequest(
-                "posts",
-                "doc",
-                "1")
-        getRequest.fetchSourceContext(new FetchSourceContext(false))
-        getRequest.storedFields("_none_")
+        co.elastic.clients.elasticsearch.core.ExistsRequest existsRequest2 = new co.elastic.clients.elasticsearch.core.ExistsRequest.Builder()
+                .index("posts")
+                .id("1")
+                .build()
 
         then:
-        client.exists(getRequest, RequestOptions.DEFAULT)
+        client.exists(existsRequest2)
 
 
         when: "delete request"
-        DeleteRequest deleteRequest = new DeleteRequest(
-                "posts",
-                "doc",
-                "1")
+        DeleteRequest deleteRequest = new DeleteRequest.Builder()
+                .index("posts")
+                .id("1")
+                .build()
 
-        DeleteResponse deleteResponse = client.delete(deleteRequest, RequestOptions.DEFAULT)
+        DeleteResponse deleteResponse = client.delete(deleteRequest)
 
         then:
-        deleteResponse.getIndex() == "posts"
+        deleteResponse.index() == "posts"
 
         cleanup:
         applicationContext.close()
-        container.stop()
     }
 
 }

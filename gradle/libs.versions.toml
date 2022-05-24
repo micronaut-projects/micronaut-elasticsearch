@@ -1,5 +1,5 @@
 [versions]
-managed-elasticsearch = "7.16.3"
+managed-elasticsearch = "8.2.0"
 
 # Micronaut
 micronaut = "3.4.3"
