@@ -17,7 +17,7 @@ package io.micronaut.elasticsearch.conditon;
 
 import io.micronaut.elasticsearch.ElasticsearchSettings;
 import io.micronaut.context.annotation.Requires;
-import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 
 import java.lang.annotation.*;
 
@@ -31,6 +31,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PACKAGE, ElementType.TYPE})
 @Requires(property = ElasticsearchSettings.PREFIX)
-@Requires(classes = {RestClient.class})
+@Requires(classes = {RestHighLevelClient.class})
 public @interface RequiresElasticsearch {
 }
