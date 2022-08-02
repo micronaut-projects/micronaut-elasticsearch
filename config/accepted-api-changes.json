@@ -1,0 +1,202 @@
+[
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchAsyncClient3$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchClient2$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$ElasticsearchTransport4$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestClient1$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.$DefaultElasticsearchClientFactory$RestHighLevelClient0$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Class io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Field $ANNOTATION_METADATA",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference.getBeanDefinitionType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference.getBeanType()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Method io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference.load()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference",
+        "member": "Constructor io.micronaut.elasticsearch.health.$ElasticsearchHealthIndicator$Definition$Reference()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator",
+        "member": "Class io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator",
+        "member": "Method io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator.getResult()",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    },
+    {
+        "type": "io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator",
+        "member": "Constructor io.micronaut.elasticsearch.health.ElasticsearchHealthIndicator(org.elasticsearch.client.RestHighLevelClient)",
+        "reason": "Changes for compatibility with elasticsearch-java 8.2.0"
+    }
+]

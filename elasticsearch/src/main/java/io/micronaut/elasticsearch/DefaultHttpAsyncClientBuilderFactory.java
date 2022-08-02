@@ -19,9 +19,9 @@ import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
 
 import jakarta.inject.Singleton;
+import org.elasticsearch.client.RestClient;
 
 /**
  * The default factory used to create {@link HttpAsyncClientBuilder} for HTTP client configurations.
@@ -29,7 +29,7 @@ import jakarta.inject.Singleton;
  * @author Puneet Behl
  * @since 1.0.0
  */
-@Requires(classes = {RestHighLevelClient.class})
+@Requires(classes = {RestClient.class})
 @Factory
 public class DefaultHttpAsyncClientBuilderFactory {
 

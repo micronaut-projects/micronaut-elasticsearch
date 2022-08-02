@@ -16,6 +16,7 @@
 
 package io.micronaut.elasticsearch
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Replaces
@@ -27,7 +28,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
 import org.apache.http.impl.nio.reactor.IOReactorConfig
 import org.elasticsearch.client.NodeSelector
-import org.elasticsearch.client.RestHighLevelClient
 import spock.lang.Specification
 
 import jakarta.inject.Singleton
@@ -38,7 +38,7 @@ import jakarta.inject.Singleton
  */
 class DefaultElasticsearchConfigurationPropertiesSpec extends Specification {
 
-    void "Test Elasticsearch high level rest client configrations"() {
+    void "Test Elasticsearch rest client configrations"() {
 
         when:
         ApplicationContext applicationContext = ApplicationContext.run(
@@ -87,8 +87,6 @@ class DefaultElasticsearchConfigurationPropertiesSpec extends Specification {
                 "elasticsearch.maxRetryTimeoutMillis": 1000,
                 "elasticsearch.request.default.localAddress": "198.57.151.22",
                 "elasticsearch.request.default.expectContinueEnabled": true
-
-
         )
 
         then:
@@ -108,7 +106,7 @@ class DefaultElasticsearchConfigurationPropertiesSpec extends Specification {
 
         expect:
         applicationContext.containsBean(DefaultElasticsearchConfigurationProperties)
-        applicationContext.containsBean(RestHighLevelClient)
+        applicationContext.containsBean(ElasticsearchClient)
         applicationContext.getBean(DefaultElasticsearchConfigurationProperties).httpHosts.size() == 2
 
     }
