@@ -2,18 +2,18 @@
 [TIP]
 .Using the CLI
 ====
-If you are creating your project using the Micronaut CLI, supply the `elasticsearch` feature to configure the Elasticsearch Java REST Client in your project:
+If you are creating your project using the Micronaut CLI, supply the `elasticsearch` feature to configure the https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html[ElasticsearchClient^] in your project:
 ----
 $ mn create-app my-app --features elasticsearch
 ----
 ====
 
-To configure the Elasticsearch Java REST Client you should first add `elasticsearch` module to your classpath:
+To configure the https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html[ElasticsearchClient^] you should first add `elasticsearch` module to your classpath:
 
 [source,groovy]
 .build.gradle
 ----
-compile "io.micronaut.elasticsearch:micronaut-elasticsearch"
+implementation "io.micronaut.elasticsearch:micronaut-elasticsearch"
 ----
 
 You should then configure the `httpHosts` of the Elasticsearch server you wish to communicate with in `application.yml` as:
