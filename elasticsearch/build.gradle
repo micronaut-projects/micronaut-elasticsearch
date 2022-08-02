@@ -5,6 +5,7 @@ plugins {
 dependencies {
     annotationProcessor(mn.micronaut.graal)
     api(libs.managed.elasticsearch.java)
+    api(libs.managed.elasticsearch.rest.high.level.client)
     api(mn.micronaut.http)
     api(mn.micronaut.validation)
 

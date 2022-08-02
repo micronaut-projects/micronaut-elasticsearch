@@ -27,7 +27,7 @@ elasticsearch:
 
 See the API for api:configuration.elasticsearch.DefaultElasticsearchConfigurationProperties[] for more information on the available configuration options.
 
-Once you have the above configuration in place then you can inject the `co.elastic.clients.elasticsearch.ElasticsearchClient`, the `co.elastic.clients.elasticsearch.ElasticsearchAsyncClient` or the `org.elasticsearch.client.RestClient` bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:
+Once you have the above configuration in place then you can inject the `co.elastic.clients.elasticsearch.ElasticsearchClient`, the `co.elastic.clients.elasticsearch.ElasticsearchAsyncClient`, the `org.elasticsearch.client.RestClient` or the deprecated `org.elasticsearch.client.RestHighLevelClient` bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:
 
 [source,groovy]
 ----
