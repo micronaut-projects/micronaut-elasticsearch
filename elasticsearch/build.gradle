@@ -3,23 +3,25 @@ plugins {
 }
 
 dependencies {
-    annotationProcessor mn.micronaut.graal
+    annotationProcessor(mn.micronaut.graal)
     api(libs.managed.elasticsearch.java)
-    api mn.micronaut.http
-    api mn.micronaut.validation
-    compileOnly mn.graal
-    compileOnly mn.micronaut.inject.java
-    compileOnly mn.micronaut.management
+    api(mn.micronaut.http)
+    api(mn.micronaut.validation)
+
+    compileOnly(mn.graal)
+    compileOnly(mn.micronaut.inject.java)
+    compileOnly(mn.micronaut.management)
+
     testImplementation(libs.testcontainers.elasticsearch)
     testImplementation(libs.testcontainers.spock)
-    testImplementation mn.groovy.json
-    testImplementation mn.micronaut.inject.groovy
-    testImplementation mn.micronaut.inject.java
-    testImplementation mn.micronaut.inject.java.test
-    testImplementation mn.micronaut.management
-    testImplementation mn.micronaut.runtime
-    testImplementation mn.micronaut.security
-    testImplementation mn.reactor
+    testImplementation(mn.groovy.json)
+    testImplementation(mn.micronaut.inject.groovy)
+    testImplementation(mn.micronaut.inject.java)
+    testImplementation(mn.micronaut.inject.java.test)
+    testImplementation(mn.micronaut.management)
+    testImplementation(mn.micronaut.runtime)
+    testImplementation(mn.micronaut.security)
+    testImplementation(mn.reactor)
 }
 
 tasks.named('test') {
