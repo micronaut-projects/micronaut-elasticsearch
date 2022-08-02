@@ -4,6 +4,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
@@ -19,8 +20,6 @@ dependencies {
     // end::testcontainers-dependencies[]
 
     testImplementation projects.elasticsearch
-
-    testRuntimeOnly mn.logback
 }
 
 tasks.named('test') {
@@ -29,6 +28,6 @@ tasks.named('test') {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
 }
