@@ -37,6 +37,7 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.core.MainResponse
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import org.testcontainers.utility.DockerImageName
 import spock.lang.Requires
 import spock.lang.Shared
 import spock.lang.Specification
@@ -56,8 +57,10 @@ class ElasticsearchSpec extends Specification {
     final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
 
     @Shared
-    ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
-
+    ElasticsearchContainer elasticsearch = new ElasticsearchContainer(
+            DockerImageName.parse("elasticsearch:$ELASTICSEARCH_VERSION")
+                    .asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch")
+    )
     // end::es-testcontainer[]
 
 

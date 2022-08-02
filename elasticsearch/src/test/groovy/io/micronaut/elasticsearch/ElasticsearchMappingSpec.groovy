@@ -32,6 +32,7 @@ import org.elasticsearch.client.indices.GetIndexRequest
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext
 import org.elasticsearch.xcontent.XContentType
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import org.testcontainers.utility.DockerImageName
 import spock.lang.Requires
 import spock.lang.Specification
 
@@ -46,9 +47,11 @@ class ElasticsearchMappingSpec extends Specification {
     final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
 
     void "Test Elasticsearch connection"() {
-
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+        ElasticsearchContainer container = new ElasticsearchContainer(
+                DockerImageName.parse("elasticsearch:$ELASTICSEARCH_VERSION")
+                        .asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch")
+        )
         container.start()
 
         ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': 'http://' + container.getHttpHostAddress())

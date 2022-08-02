@@ -27,6 +27,7 @@ import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import org.testcontainers.utility.DockerImageName
 import spock.lang.Requires
 import spock.lang.Specification
 import reactor.core.publisher.Flux
@@ -42,7 +43,7 @@ class ElasticsearchHealthIndicatorSpec extends Specification {
 
     void "test elasticsearch health indicator"() {
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+        ElasticsearchContainer container = new ElasticsearchContainer(DockerImageName.parse("elasticsearch:$ELASTICSEARCH_VERSION").asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch"))
         container.start()
 
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
