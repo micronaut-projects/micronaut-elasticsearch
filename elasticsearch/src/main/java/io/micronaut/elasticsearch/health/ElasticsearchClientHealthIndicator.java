@@ -15,17 +15,16 @@
  */
 package io.micronaut.elasticsearch.health;
 
-import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
-import co.elastic.clients.elasticsearch.cluster.HealthResponse;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.health.HealthStatus;
 import io.micronaut.management.endpoint.health.HealthEndpoint;
 import io.micronaut.management.health.indicator.HealthIndicator;
 import io.micronaut.management.health.indicator.HealthResult;
-import jakarta.inject.Singleton;
 import org.reactivestreams.Publisher;
 
-import java.util.Locale;
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
+import jakarta.inject.Singleton;
+import java.io.IOException;
 
 import static io.micronaut.health.HealthStatus.DOWN;
 import static io.micronaut.health.HealthStatus.UP;
@@ -40,6 +39,7 @@ import static io.micronaut.health.HealthStatus.UP;
  */
 @Requires(beans = HealthEndpoint.class)
 @Requires(property = HealthEndpoint.PREFIX + ".elasticsearch.enabled", notEquals = "false")
+@Requires(property = HealthEndpoint.PREFIX + ".elasticsearch.rest.high.level.enabled", notEquals = "true") // we don't want to clash with the deprecated check
 @Singleton
 public class ElasticsearchClientHealthIndicator implements HealthIndicator {
 
@@ -65,40 +65,24 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
      */
     @Override
     public Publisher<HealthResult> getResult() {
-        return (subscriber -> client.cluster().health()
-                .handle((health, exception) -> {
-
-                    final HealthResult.Builder resultBuilder = HealthResult.builder(NAME);
+        return (subscriber -> {
+            final HealthResult.Builder resultBuilder = HealthResult.builder(NAME);
+            try {
+                client.cluster().health().handle((health, exception) -> {
                     if (exception != null) {
                         subscriber.onNext(resultBuilder.status(DOWN).exception(exception).build());
                         subscriber.onComplete();
                     } else {
                         HealthStatus status = health.status() == co.elastic.clients.elasticsearch._types.HealthStatus.Red ? DOWN : UP;
-                        subscriber.onNext(resultBuilder.status(status).details(healthResultDetails(health)).build());
+                        subscriber.onNext(resultBuilder.status(status).details(health).build());
                         subscriber.onComplete();
                     }
                     return health;
-                }));
-    }
-
-    private String healthResultDetails(HealthResponse response) {
-        return "{"
-                + "\"cluster_name\":\"" + response.clusterName() + "\","
-                + "\"status\":\"" + response.status().name().toLowerCase(Locale.ENGLISH) + "\","
-                + "\"timed_out\":" + response.timedOut() + ","
-                + "\"number_of_nodes\":" + response.numberOfNodes() + ","
-                + "\"number_of_data_nodes\":" + response.numberOfDataNodes() + ","
-                + "\"number_of_pending_tasks\":" + response.numberOfPendingTasks() + ","
-                + "\"number_of_in_flight_fetch\":" + response.numberOfInFlightFetch() + ","
-                + "\"task_max_waiting_in_queue\":\"" + response.taskMaxWaitingInQueueMillis().toString() + "\","
-                + "\"task_max_waiting_in_queue_millis\":" + response.taskMaxWaitingInQueueMillis().toEpochMilli() + ","
-                + "\"active_shards_percent_as_number\":\"" + response.activeShardsPercentAsNumber() + "\","
-                + "\"active_primary_shards\":" + response.activePrimaryShards() + ","
-                + "\"active_shards\":" + response.activeShards() + ","
-                + "\"relocating_shards\":" + response.relocatingShards() + ","
-                + "\"initializing_shards\":" + response.initializingShards() + ","
-                + "\"unassigned_shards\":" + response.unassignedShards() + ","
-                + "\"delayed_unassigned_shards\":" + response.delayedUnassignedShards()
-                + "}";
+                });
+            } catch (IOException e) {
+                subscriber.onNext(resultBuilder.status(DOWN).exception(e).build());
+                subscriber.onComplete();
+            }
+        });
     }
 }
