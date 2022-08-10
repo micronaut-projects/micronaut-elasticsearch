@@ -5,26 +5,28 @@ repositories {
     maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 dependencies {
-    annotationProcessor mn.micronaut.graal
-    api "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
-    api "co.elastic.clients:elasticsearch-java:$elasticsearchVersion"
-    api mn.micronaut.http
-    api mn.micronaut.validation
-    compileOnly mn.graal
-    compileOnly mn.micronaut.inject.java
-    compileOnly mn.micronaut.management
-    testImplementation 'org.testcontainers:elasticsearch'
-    testImplementation 'org.testcontainers:spock'
-    testImplementation mn.groovy.json
-    testImplementation mn.micronaut.inject.groovy
-    testImplementation mn.micronaut.inject.java
-    testImplementation mn.micronaut.inject.java.test
-    testImplementation mn.micronaut.management
-    testImplementation mn.micronaut.runtime
-    testImplementation mn.micronaut.security
-    testImplementation mn.reactor
+    annotationProcessor(mn.micronaut.graal)
+    api(libs.managed.elasticsearch.java)
+    api(libs.managed.elasticsearch.rest.high.level.client)
+    api(mn.micronaut.http)
+    api(mn.micronaut.validation)
+
+    compileOnly(mn.graal)
+    compileOnly(mn.micronaut.inject.java)
+    compileOnly(mn.micronaut.management)
+
+    testImplementation(libs.testcontainers.elasticsearch)
+    testImplementation(libs.testcontainers.spock)
+    testImplementation(mn.groovy.json)
+    testImplementation(mn.micronaut.inject.groovy)
+    testImplementation(mn.micronaut.inject.java)
+    testImplementation(mn.micronaut.inject.java.test)
+    testImplementation(mn.micronaut.management)
+    testImplementation(mn.micronaut.runtime)
+    testImplementation(mn.micronaut.security)
+    testImplementation(mn.reactor)
 }
 
 tasks.named('test') {
-    systemProperty 'elasticsearch.version', elasticsearchVersion
+    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
 }

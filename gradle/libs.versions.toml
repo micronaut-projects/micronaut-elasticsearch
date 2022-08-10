@@ -1,0 +1,9 @@
+[versions]
+managed-elasticsearch = "7.16.3"
+
+[libraries]
+managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
+managed-elasticsearch-rest-high-level-client = { module = "org.elasticsearch.client:elasticsearch-rest-high-level-client", version.ref = "managed-elasticsearch" }
+
+testcontainers-elasticsearch = { module = "org.testcontainers:elasticsearch" }
+testcontainers-spock = { module = "org.testcontainers:spock" }

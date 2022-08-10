@@ -8,23 +8,26 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testCompileOnly mn.micronaut.inject.groovy
-    testImplementation mn.micronaut.validation
-    testImplementation mn.spock
-    testImplementation mn.micronaut.test.spock
+
+    testImplementation(platform(mn.micronaut.bom))
+    testImplementation(mn.micronaut.validation)
+    testImplementation(mn.spock)
+    testImplementation(mn.micronaut.test.spock)
 
     // tag::testcontainers-dependencies[]
-    testImplementation 'org.testcontainers:spock'
-    testImplementation 'org.testcontainers:elasticsearch'
+    testImplementation(libs.testcontainers.spock)
+    testImplementation(libs.testcontainers.elasticsearch)
     // end::testcontainers-dependencies[]
 
-    testImplementation projects.elasticsearch
+    testImplementation(projects.elasticsearch)
+
+    testRuntimeOnly(mn.logback)
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-    systemProperty 'elasticsearch.version', elasticsearchVersion
+    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
 }
 
 java {

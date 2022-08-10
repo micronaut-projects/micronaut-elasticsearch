@@ -21,6 +21,7 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.core.MainResponse
 import org.testcontainers.elasticsearch.ElasticsearchContainer
+import org.testcontainers.utility.DockerImageName
 import spock.lang.Requires
 import spock.lang.Specification
 
@@ -34,7 +35,7 @@ class ElasticsearchAuthorizationSpec extends Specification {
     void "Test Elasticsearch authorization"() {
 
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+        ElasticsearchContainer container = new ElasticsearchContainer(DockerImageName.parse("elasticsearch:$ELASTICSEARCH_VERSION").asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch"))
         container.withPassword(ELASTICSEARCH_PASSWORD)
         container.start()
 

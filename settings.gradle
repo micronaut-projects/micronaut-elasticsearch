@@ -6,11 +6,12 @@ pluginManagement {
 }
 
 plugins {
-    id 'io.micronaut.build.shared.settings' version '5.3.14'
+    id("io.micronaut.build.shared.settings") version "5.3.14"
 }
 
 rootProject.name = 'elasticsearch-parent'
 
+include 'elasticsearch-bom'
 include 'elasticsearch'
 include 'test-suite-groovy'
 
@@ -21,9 +22,8 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
     }
-    versionCatalogs {
-        mn {
-            from "io.micronaut:micronaut-bom:${providers.gradleProperty('micronautVersion').get()}"
-        }
-    }
+}
+
+micronautBuild {
+    importMicronautCatalog()
 }
