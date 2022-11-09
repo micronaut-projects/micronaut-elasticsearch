@@ -1,5 +1,5 @@
 plugins {
-    id 'io.micronaut.build.internal.module'
+    id 'io.micronaut.build.internal.elasticsearch-module'
 }
 
 dependencies {
@@ -8,7 +8,7 @@ dependencies {
     api(libs.managed.elasticsearch.rest.high.level.client)
     api(mn.micronaut.http)
     api(mn.micronaut.validation)
-
+    implementation(mn.micronaut.jackson.databind)
     compileOnly(mn.graal)
     compileOnly(mn.micronaut.inject.java)
     compileOnly(mn.micronaut.management)

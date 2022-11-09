@@ -6,7 +6,7 @@ pluginManagement {
 }
 
 plugins {
-    id("io.micronaut.build.shared.settings") version "5.3.15"
+    id("io.micronaut.build.shared.settings") version "6.0.2"
 }
 
 rootProject.name = 'elasticsearch-parent'
@@ -16,6 +16,13 @@ include 'elasticsearch'
 include 'test-suite-groovy'
 
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
 
 micronautBuild {
     importMicronautCatalog()
