@@ -4,24 +4,20 @@ plugins {
 
 dependencies {
     annotationProcessor(mn.micronaut.graal)
+
+    compileOnly(libs.graal.svm)
+    implementation(mn.micronaut.management)
+
     api(libs.managed.elasticsearch.java)
     api(libs.managed.elasticsearch.rest.high.level.client)
     api(mn.micronaut.http)
     api(mn.micronaut.validation)
+
     implementation(mn.micronaut.jackson.databind)
-    compileOnly(mn.graal)
-    compileOnly(mn.micronaut.inject.java)
-    compileOnly(mn.micronaut.management)
 
     testImplementation(libs.testcontainers.elasticsearch)
-    testImplementation(libs.testcontainers.spock)
     testImplementation(mn.groovy.json)
-    testImplementation(mn.micronaut.inject.groovy)
-    testImplementation(mn.micronaut.inject.java)
-    testImplementation(mn.micronaut.inject.java.test)
-    testImplementation(mn.micronaut.management)
-    testImplementation(mn.micronaut.runtime)
-    testImplementation(mn.micronaut.security)
+    testImplementation(mnSecurity.micronaut.security)
     testImplementation(mn.reactor)
 }
 
