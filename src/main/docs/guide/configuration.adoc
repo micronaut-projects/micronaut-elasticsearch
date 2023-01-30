@@ -18,7 +18,6 @@ implementation "io.micronaut.elasticsearch:micronaut-elasticsearch"
 
 You should then configure the `httpHosts` of the Elasticsearch server you wish to communicate with in `application.yml` as:
 
-.application configuration
 [configuration]
 ----
 elasticsearch:
@@ -42,7 +41,6 @@ For more information on executing different operations using ElasticsearchClient
 
 Often times you want to change the default configurations. To achieve this Micronaut, includes the ability to change the default request configurations. You can set the default request configurations under key `elasticsearch.request.default` as:
 
-.application configuration
 [configuration]
 ----
 elasticsearch:

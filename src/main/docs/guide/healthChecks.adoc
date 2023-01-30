@@ -4,7 +4,6 @@ interface resolving the health of the Elasticsearch cluster.
 
 To enable or disable the indicator use:
 
-.application configuration
 [configuration]
 ----
 endpoints:
@@ -16,7 +15,6 @@ endpoints:
 
 To use the deprecated health indicator use:
 
-.application configuration
 [configuration]
 ----
 endpoints:
