@@ -1,3 +1,10 @@
 plugins {
     id "io.micronaut.build.internal.elasticsearch-base"
 }
+
+tasks {
+    named<Test>("test") {
+        useJUnitPlatform()
+        systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
+    }
+}

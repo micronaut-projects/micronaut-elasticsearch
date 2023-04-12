@@ -17,11 +17,9 @@ dependencies {
     testRuntimeOnly(mn.logback.classic)
 }
 
-tasks {
-    named<Test>("test") {
-        useJUnitPlatform()
-        systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
-    }
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
 }
 
 java {
