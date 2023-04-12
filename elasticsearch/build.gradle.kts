@@ -7,9 +7,7 @@ dependencies {
 
     compileOnly(libs.graal.svm)
     implementation(mn.micronaut.management)
-
     api(libs.managed.elasticsearch.java)
-    api(libs.managed.elasticsearch.rest.high.level.client)
     api(mn.micronaut.http)
 
     implementation(mn.micronaut.jackson.databind)
@@ -27,3 +25,8 @@ tasks {
     }
 }
 
+micronautBuild {
+    binaryCompatibility {
+        enabled.set(false)
+    }
+}

@@ -22,45 +22,40 @@ import io.micronaut.context.exceptions.NoSuchBeanException
 import io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties
 import io.micronaut.health.HealthStatus
 import io.micronaut.management.health.indicator.HealthResult
-import org.apache.http.auth.AuthScope
-import org.apache.http.auth.UsernamePasswordCredentials
-import org.apache.http.client.CredentialsProvider
-import org.apache.http.impl.client.BasicCredentialsProvider
+import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy
 import org.testcontainers.elasticsearch.ElasticsearchContainer
-import org.testcontainers.utility.DockerImageName
+import reactor.core.publisher.Flux
 import spock.lang.Requires
 import spock.lang.Specification
-import reactor.core.publisher.Flux
-
 /**
  * @author Puneet Behl
  * @since 1.0.0
  */
 @Requires({ sys['elasticsearch.version'] })
-class ElasticsearchHealthIndicatorSpec extends Specification {
+class ElasticsearchClientHealthIndicatorSpec extends Specification {
 
     final static String ELASTICSEARCH_VERSION = System.getProperty("elasticsearch.version")
 
     void "test elasticsearch health indicator"() {
         given:
-        ElasticsearchContainer container = new ElasticsearchContainer(DockerImageName.parse("elasticsearch:$ELASTICSEARCH_VERSION").asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch"))
+        ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
+                .withExposedPorts(9200)
+                .withEnv("xpack.security.enabled", "false")
+                .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started\".*"))
         container.start()
 
-        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider()
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme"))
-
-        ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': "http://${container.getHttpHostAddress()}")
+        ApplicationContext applicationContext = ApplicationContext.run('elasticsearch.httpHosts': "http://$container.httpHostAddress")
 
         expect:
         applicationContext.containsBean(DefaultElasticsearchConfigurationProperties)
 
         when:
-        ElasticsearchHealthIndicator indicator = applicationContext.getBean(ElasticsearchHealthIndicator)
+        ElasticsearchClientHealthIndicator indicator = applicationContext.getBean(ElasticsearchClientHealthIndicator)
         HealthResult result = Flux.from(indicator.getResult()).blockFirst()
 
         then:
         result.status == HealthStatus.UP
-        new JsonSlurper().parseText((String) result.details).status == "green"
+        new JsonSlurper().parseText((String) result.details).status == co.elastic.clients.elasticsearch._types.HealthStatus.Green.name().toLowerCase(Locale.ENGLISH)
 
         when:
         container.stop()
@@ -69,20 +64,19 @@ class ElasticsearchHealthIndicatorSpec extends Specification {
         then:
         result.status == HealthStatus.DOWN
 
-
         cleanup:
         applicationContext?.stop()
+        container.stop()
     }
 
-    void "test that ElasticsearchHealthIndicator is not created when the endpoints.health.elasticsearch.rest.high.level.enabled is set to false "() {
+    void "test that ElasticsearchClientHealthIndicator is not created when the endpoints.health.elasticsearch.rest.high.level.enabled is set to false "() {
         ApplicationContext applicationContext = ApplicationContext.run(
                 'elasticsearch.httpHosts': "http://localhost:9200",
-                'endpoints.health.elasticsearch.rest.high.level.enabled': "false"
-
+                'endpoints.health.elasticsearch.enabled': "false"
         )
 
         when:
-        applicationContext.getBean(ElasticsearchHealthIndicator)
+        applicationContext.getBean(ElasticsearchClientHealthIndicator)
 
         then:
         thrown(NoSuchBeanException)

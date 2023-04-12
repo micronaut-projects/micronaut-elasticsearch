@@ -5,7 +5,7 @@ micronaut = "4.0.0-M1"
 micronaut-security = "4.0.0-M1"
 micronaut-test = "4.0.0-M1"
 
-managed-elasticsearch = "7.16.3"
+managed-elasticsearch = "8.2.0"
 
 graal-svm = "22.3.1"
 groovy = "4.0.11"
@@ -16,7 +16,6 @@ testcontainers = "1.18.0"
 micronaut-security = { module = "io.micronaut.security:micronaut-security-bom", version.ref = "micronaut-security" }
 
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
-managed-elasticsearch-rest-high-level-client = { module = "org.elasticsearch.client:elasticsearch-rest-high-level-client", version.ref = "managed-elasticsearch" }
 
 graal-svm = { module = "org.graalvm.nativeimage:svm", version.ref = "graal-svm" }
 
