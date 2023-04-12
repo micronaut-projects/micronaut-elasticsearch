@@ -67,22 +67,18 @@ public class ElasticsearchClientHealthIndicator implements HealthIndicator {
     public Publisher<HealthResult> getResult() {
         return (subscriber -> {
             final HealthResult.Builder resultBuilder = HealthResult.builder(NAME);
-            try {
-                client.cluster().health().handle((health, exception) -> {
-                    if (exception != null) {
-                        subscriber.onNext(resultBuilder.status(DOWN).exception(exception).build());
-                        subscriber.onComplete();
-                    } else {
-                        HealthStatus status = health.status() == co.elastic.clients.elasticsearch._types.HealthStatus.Red ? DOWN : UP;
-                        subscriber.onNext(resultBuilder.status(status).details(health).build());
-                        subscriber.onComplete();
-                    }
-                    return health;
-                });
-            } catch (IOException e) {
-                subscriber.onNext(resultBuilder.status(DOWN).exception(e).build());
-                subscriber.onComplete();
-            }
+            client.cluster().health().handle((health, exception) -> {
+                if (exception != null) {
+                    subscriber.onNext(resultBuilder.status(DOWN).exception(exception).build());
+                    subscriber.onComplete();
+                } else {
+                    HealthStatus status = health.status() == co.elastic.clients.elasticsearch._types.HealthStatus.Red ? DOWN : UP;
+                    subscriber.onNext(resultBuilder.status(status).details(health).build());
+                    subscriber.onComplete();
+                }
+                return health;
+            });
+
         });
     }
 }

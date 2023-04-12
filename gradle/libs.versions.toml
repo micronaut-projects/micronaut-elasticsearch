@@ -1,5 +1,5 @@
 [versions]
-managed-elasticsearch = "7.16.3"
+managed-elasticsearch = "7.17.9"
 
 [libraries]
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
