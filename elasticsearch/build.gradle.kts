@@ -1,5 +1,5 @@
 plugins {
-    id 'io.micronaut.build.internal.elasticsearch-module'
+    id("io.micronaut.build.internal.elasticsearch-module")
 }
 
 dependencies {
@@ -20,6 +20,10 @@ dependencies {
     testImplementation(mn.reactor)
 }
 
-tasks.named('test') {
-    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
+
+tasks {
+    named<Test>("test") {
+        systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
+    }
 }
+
