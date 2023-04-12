@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <title>Micronaut Elasticsearch</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
     <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
@@ -111,7 +110,7 @@
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/introduction.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/introduction.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -124,7 +123,7 @@
 <h1 id="releaseHistory"><a class="anchor" href="#releaseHistory"></a>2 Release History</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/releaseHistory.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/releaseHistory.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -140,7 +139,7 @@
 <h1 id="configuration"><a class="anchor" href="#configuration"></a>3 Configuration</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/configuration.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/configuration.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -175,24 +174,63 @@
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation("io.micronaut.elasticsearch:micronaut-elasticsearch")</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "io.micronaut.elasticsearch:micronaut-elasticsearch"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>You should then configure the <code>httpHosts</code> of the Elasticsearch server you wish to communicate with in <code>application.yml</code> as:</p>
 </div>
-<div class="listingblock">
-<div class="title">application.yml</div>
+<div class="openblock">
+<div class="content">
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">elasticsearch.httpHosts=http://localhost:9200,http://127.0.0.2:9200</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
   httpHosts: "http://localhost:9200,http://127.0.0.2:9200"</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[elasticsearch]
+  httpHosts="http://localhost:9200,http://127.0.0.2:9200"</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy-config hljs" data-lang="groovy-config">elasticsearch {
+  httpHosts = "http://localhost:9200,http://127.0.0.2:9200"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">{
+  elasticsearch {
+    httpHosts = "http://localhost:9200,http://127.0.0.2:9200"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json-config hljs" data-lang="json-config">{
+  "elasticsearch": {
+    "httpHosts": "http://localhost:9200,http://127.0.0.2:9200"
+  }
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>See the API for <a href="../api/io/micronaut/configuration/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a> for more information on the available configuration options.</p>
 </div>
 <div class="paragraph">
-<p>Once you have the above configuration in place then you can inject the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code>, the <code>co.elastic.clients.elasticsearch.ElasticsearchAsyncClient</code> or the <code>org.elasticsearch.client.RestClient</code> bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:</p>
+<p>Once you have the above configuration in place then you can inject the <code>co.elastic.clients.elasticsearch.ElasticsearchClient</code>, the <code>co.elastic.clients.elasticsearch.ElasticsearchAsyncClient</code>, the <code>org.elasticsearch.client.RestClient</code> or the deprecated <code>org.elasticsearch.client.RestHighLevelClient</code> bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -219,8 +257,16 @@
 <div class="paragraph">
 <p>Often times you want to change the default configurations. To achieve this Micronaut, includes the ability to change the default request configurations. You can set the default request configurations under key <code>elasticsearch.request.default</code> as:</p>
 </div>
-<div class="listingblock">
-<div class="title">application.yml</div>
+<div class="openblock">
+<div class="content">
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">elasticsearch.httpHosts=http://localhost:9200,http://127.0.0.2:9200
+elasticsearch.request.default.expectContinueEnabled=true
+elasticsearch.request.default.localAddress=198.57.151.22</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">elasticsearch:
   httpHosts: http://localhost:9200,http://127.0.0.2:9200
@@ -228,6 +274,61 @@
     default:
       expectContinueEnabled: true
       localAddress: 198.57.151.22</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[elasticsearch]
+  httpHosts="http://localhost:9200,http://127.0.0.2:9200"
+  [elasticsearch.request]
+    [elasticsearch.request.default]
+      expectContinueEnabled=true
+      localAddress="198.57.151.22"</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy-config hljs" data-lang="groovy-config">elasticsearch {
+  httpHosts = "http://localhost:9200,http://127.0.0.2:9200"
+  request {
+    'default' {
+      expectContinueEnabled = true
+      localAddress = "198.57.151.22"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">{
+  elasticsearch {
+    httpHosts = "http://localhost:9200,http://127.0.0.2:9200"
+    request {
+      default {
+        expectContinueEnabled = true
+        localAddress = "198.57.151.22"
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json-config hljs" data-lang="json-config">{
+  "elasticsearch": {
+    "httpHosts": "http://localhost:9200,http://127.0.0.2:9200",
+    "request": {
+      "default": {
+        "expectContinueEnabled": true,
+        "localAddress": "198.57.151.22"
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -246,8 +347,9 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import jakarta.inject.Singleton
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.context.annotation.Replaces
 import org.apache.http.auth.AuthScope
+
 @Factory
 static class HttpAsyncClientBuilderFactory {
 
@@ -294,7 +396,7 @@ static class HttpAsyncClientBuilderFactory {
 <h1 id="healthChecks"><a class="anchor" href="#healthChecks"></a>4 Health Checks</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/healthChecks.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/healthChecks.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -308,8 +410,14 @@ interface resolving the health of the Elasticsearch cluster.</p>
 <div class="paragraph">
 <p>To enable or disable the indicator use:</p>
 </div>
-<div class="listingblock">
-<div class="title">application.yml</div>
+<div class="openblock">
+<div class="content">
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">endpoints.health.elasticsearch.enabled=true</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
   health:
@@ -317,11 +425,64 @@ interface resolving the health of the Elasticsearch cluster.</p>
       enabled: true</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[endpoints]
+  [endpoints.health]
+    [endpoints.health.elasticsearch]
+      enabled=true</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy-config hljs" data-lang="groovy-config">endpoints {
+  health {
+    elasticsearch {
+      enabled = true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">{
+  endpoints {
+    health {
+      elasticsearch {
+        enabled = true
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json-config hljs" data-lang="json-config">{
+  "endpoints": {
+    "health": {
+      "elasticsearch": {
+        "enabled": true
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>To use the deprecated health indicator use:</p>
 </div>
-<div class="listingblock">
-<div class="title">application.yml</div>
+<div class="openblock">
+<div class="content">
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">endpoints.health.elasticsearch.rest.high.level.enabled=false</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoints:
   health:
@@ -332,6 +493,74 @@ interface resolving the health of the Elasticsearch cluster.</p>
             enabled: false</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[endpoints]
+  [endpoints.health]
+    [endpoints.health.elasticsearch]
+      [endpoints.health.elasticsearch.rest]
+        [endpoints.health.elasticsearch.rest.high]
+          [endpoints.health.elasticsearch.rest.high.level]
+            enabled=false</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy-config hljs" data-lang="groovy-config">endpoints {
+  health {
+    elasticsearch {
+      rest {
+        high {
+          level {
+            enabled = false
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">{
+  endpoints {
+    health {
+      elasticsearch {
+        rest {
+          high {
+            level {
+              enabled = false
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json-config hljs" data-lang="json-config">{
+  "endpoints": {
+    "health": {
+      "elasticsearch": {
+        "rest": {
+          "high": {
+            "level": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>See the section on the <a href="https://docs.micronaut.io/latest/guide/index.html#healthEndpoint">Health Endpoint</a> for more information.</p>
 </div>
@@ -339,7 +568,7 @@ interface resolving the health of the Elasticsearch cluster.</p>
 <h1 id="graalvm"><a class="anchor" href="#graalvm"></a>5 GraalVM Support</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/graalvm.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/graalvm.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
@@ -365,7 +594,7 @@ information.
 <h1 id="repository"><a class="anchor" href="#repository"></a>6 Repository</h1>
 
 <div class='contribute-btn'>
-    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/master/src/main/docs/guide/repository.adoc"'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-elasticsearch/edit/4.4.x/src/main/docs/guide/repository.adoc"'>
         <i class='fa fa-pencil-square-o'></i> Improve this doc
     </button>
 </div>
