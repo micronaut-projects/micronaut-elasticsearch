@@ -7,4 +7,4 @@ elasticsearch:
 test-resources:
   containers:
     elasticsearch:
-      startup-timeout: 300s
+      startup-timeout: 600s
