@@ -1,10 +1,10 @@
 plugins {
-    id 'groovy'
-    id 'io.micronaut.build.internal.elasticsearch-tests'
+    id("groovy")
+    id("io.micronaut.build.internal.elasticsearch-tests")
 }
 
 dependencies {
-    testCompileOnly mn.micronaut.inject.groovy
+    testCompileOnly(mn.micronaut.inject.groovy)
 
     testImplementation(platform(mn.micronaut.core.bom))
     testImplementation(mnTest.micronaut.test.spock)
@@ -17,12 +17,14 @@ dependencies {
     testRuntimeOnly(mn.logback.classic)
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
+tasks {
+    named<Test>("test") {
+        useJUnitPlatform()
+        systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
+    }
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion('17')
-    targetCompatibility = JavaVersion.toVersion('17')
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }

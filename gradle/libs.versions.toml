@@ -2,13 +2,13 @@
 micronaut-docs = "2.0.0"
 micronaut = "4.0.0-M1"
 
-micronaut-security = "4.0.0-SNAPSHOT"
-micronaut-test = "4.0.0-SNAPSHOT"
+micronaut-security = "4.0.0-M1"
+micronaut-test = "4.0.0-M1"
 
 managed-elasticsearch = "7.16.3"
 
 graal-svm = "22.3.1"
-groovy = "4.0.9"
+groovy = "4.0.11"
 spock = "2.3-groovy-4.0"
 testcontainers = "1.18.0"
 
