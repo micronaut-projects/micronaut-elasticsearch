@@ -30,3 +30,8 @@ dependencies {
     implementation "org.yaml:snakeyaml"
     runtimeOnly "ch.qos.logback:logback-classic"
 }
+micronaut {
+    testResources {
+        clientTimeout = 300
+    }
+}
