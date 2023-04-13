@@ -17,12 +17,3 @@ dependencies {
     testRuntimeOnly(mn.logback.classic)
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-    systemProperty 'elasticsearch.version', libs.versions.managed.elasticsearch.get()
-}
-
-java {
-    sourceCompatibility = JavaVersion.toVersion("17")
-    targetCompatibility = JavaVersion.toVersion("17")
-}

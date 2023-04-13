@@ -1,19 +1,15 @@
 package micronaut.example.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Iterator;
+
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
+import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import io.micronaut.context.annotation.Value;
 import jakarta.inject.Singleton;
-import micronaut.example.controller.SearchMovieResponse;
 import micronaut.example.exception.MovieServiceException;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,29 +21,24 @@ public class MovieServiceImpl implements MovieService {
     @Value("${elasticsearch.indexes.movies}")
     String moviesIndex;
 
-    private final RestHighLevelClient client;
-    private final MovieMapper movieMapper;
-    private final ObjectMapper objectMapper;
+    private final ElasticsearchClient client;
 
-    public MovieServiceImpl(RestHighLevelClient client,
-                            MovieMapper movieMapper,
-                            ObjectMapper objectMapper) {
+    public MovieServiceImpl(ElasticsearchClient client) {
         this.client = client;
-        this.movieMapper = movieMapper;
-        this.objectMapper = objectMapper;
     }
 
     @Override
     public String saveMovie(Movie movie) {
         try {
-            String movieAsJsonString = objectMapper.writeValueAsString(movie);
+            IndexRequest<Movie> indexRequest = new IndexRequest.Builder<Movie>()
+                .index(moviesIndex)
+                .document(movie)
+                .build();
 
-            IndexRequest indexRequest = new IndexRequest(moviesIndex).source(movieAsJsonString, XContentType.JSON);
+            IndexResponse indexResponse = client.index(indexRequest);
+            String id = indexResponse.id();
 
-            IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
-            String id = indexResponse.getId();
-
-            LOG.info("Document for '{}' {} successfully in ES. The id is: {}", movie, indexResponse.getResult(), id);
+            LOG.info("Document for '{}' {} successfully in ES. The id is: {}", movie, indexResponse.result(), id);
             return id;
         } catch (Exception e) {
             String errorMessage = String.format("An exception occurred while indexing '%s'", movie);
@@ -57,17 +48,22 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public SearchMovieResponse searchMovies(String title) {
+    public Movie searchMovies(String title) {
         try {
-            SearchRequest searchRequest = new SearchRequest(moviesIndex);
-            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-            searchSourceBuilder.query(QueryBuilders.termQuery("title", title));
-            searchRequest.source(searchSourceBuilder);
+            SearchResponse<Movie> searchResponse = client.search((s) ->
+                s.index(moviesIndex)
+                    .query(q -> q.match(m ->
+                        m.field("title")
+                         .query(title)
+                    )), Movie.class
+            );
+            LOG.info("Searching for '{}' took {} and found {}", title, searchResponse.took(), searchResponse.hits().total().value());
 
-            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-            LOG.info("Searching for '{}' took {} and found {}", title, searchResponse.getTook(), searchResponse.getHits().getTotalHits());
-
-            return movieMapper.toSearchMovieDto(searchResponse.getHits(), searchResponse.getTook());
+            Iterator<Hit<Movie>> hits = searchResponse.hits().hits().iterator();
+            if (hits.hasNext()) {
+                return hits.next().source();
+            }
+            return null;
 
         } catch (Exception e) {
             String errorMessage = String.format("An exception occurred while searching for title '%s'", title);
