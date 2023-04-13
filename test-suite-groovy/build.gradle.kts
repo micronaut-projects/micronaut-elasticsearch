@@ -12,7 +12,8 @@ dependencies {
     // tag::testcontainers-dependencies[]
     testImplementation(libs.testcontainers.elasticsearch)
     // end::testcontainers-dependencies[]
-
+    testImplementation(libs.apache.http.client)
+    testImplementation(libs.apache.http.async.client)
     testImplementation(projects.micronautElasticsearch)
     testRuntimeOnly(mn.logback.classic)
 }

@@ -38,7 +38,7 @@ class ElasticsearchMappingSpec extends Specification {
     static final ElasticsearchContainer container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:$ELASTICSEARCH_VERSION")
             .withExposedPorts(9200)
             .withEnv("xpack.security.enabled", "false")
-            .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started\".*"))
+            .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started.*"))
 
     void setupSpec() {
         container.start()

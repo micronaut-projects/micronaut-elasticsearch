@@ -33,7 +33,7 @@ class ElasticsearchAuthorizationSpec extends Specification {
             .withExposedPorts(9200)
             .withEnv("xpack.security.enabled", "false")
             .withPassword(ELASTICSEARCH_PASSWORD)
-            .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started\".*"))
+            .waitingFor(new LogMessageWaitStrategy().withRegEx(".*\"message\":\"started.*"))
 
     void setupSpec() {
         container.start()
