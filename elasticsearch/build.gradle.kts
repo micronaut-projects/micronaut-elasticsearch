@@ -7,7 +7,13 @@ dependencies {
 
     compileOnly(libs.graal.svm)
     implementation(mn.micronaut.management)
-    api(libs.managed.elasticsearch.java)
+    api(libs.managed.elasticsearch.java) {
+        exclude(group="org.elasticsearch.client", module = "elasticsearch-rest-client")
+    }
+    implementation(libs.managed.elasticsearch.rest.client) {
+        exclude(group="commons-logging", module = "commons-logging")
+    }
+    runtimeOnly(libs.jcl.over.slf4j)
     api(mn.micronaut.http)
 
     implementation(mn.micronaut.jackson.databind)

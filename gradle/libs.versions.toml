@@ -4,20 +4,27 @@ micronaut = "4.0.0-M1"
 
 micronaut-security = "4.0.0-M1"
 micronaut-test = "4.0.0-M1"
-
-managed-elasticsearch = "8.2.0"
+micronaut-gradle-plugin = "4.0.0-SNAPSHOT"
+managed-elasticsearch = "8.7.0"
 
 graal-svm = "22.3.1"
 groovy = "4.0.11"
 spock = "2.3-groovy-4.0"
 testcontainers = "1.18.0"
+slf4j = "2.0.7"
+awaitility = "4.2.0"
+apache-http-client = "4.5.14"
+apache-http-async-client = "4.1.5"
 
 [libraries]
 micronaut-security = { module = "io.micronaut.security:micronaut-security-bom", version.ref = "micronaut-security" }
-
+jcl-over-slf4j = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
-
+managed-elasticsearch-rest-client = { module = "org.elasticsearch.client:elasticsearch-rest-client", version.ref = "managed-elasticsearch" }
+apache-http-client = { module = "org.apache.httpcomponents:httpclient", version.ref = "apache-http-client" }
+apache-http-async-client = { module = "org.apache.httpcomponents:httpasyncclient", version.ref = "apache-http-async-client" }
 graal-svm = { module = "org.graalvm.nativeimage:svm", version.ref = "graal-svm" }
 
 testcontainers-elasticsearch = { module = "org.testcontainers:elasticsearch", version.ref = "testcontainers"  }
-
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }

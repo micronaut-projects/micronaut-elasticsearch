@@ -1,0 +1,38 @@
+plugins {
+    id 'io.micronaut.application'
+    id 'io.micronaut.test-resources'
+    id 'io.micronaut.build.internal.elasticsearch-native-tests'
+}
+
+mainClassName = "micronaut.example.Application"
+micronaut {
+    version "4.0.0-SNAPSHOT"
+    testRuntime "junit5"
+    enableNativeImage false
+    processing {
+        incremental(true)
+        annotations("helloworld.*")
+    }
+}
+
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        substitute module('io.micronaut.elasticsearch:micronaut-elasticsearch') using project(':micronaut-elasticsearch')
+    }
+}
+
+dependencies {
+    annotationProcessor "io.micronaut.validation:micronaut-validation-processor"
+    implementation mn.micronaut.context
+    implementation mn.micronaut.jackson.databind
+    implementation "io.micronaut.validation:micronaut-validation"
+    testImplementation libs.awaitility
+    implementation project(":micronaut-elasticsearch")
+    implementation mn.snakeyaml
+    runtimeOnly mn.logback.classic
+}
+micronaut {
+    testResources {
+        clientTimeout = 300
+    }
+}

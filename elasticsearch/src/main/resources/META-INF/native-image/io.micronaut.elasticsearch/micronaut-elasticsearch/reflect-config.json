@@ -1,0 +1,19 @@
+[{
+  "name": "org.apache.http.impl.auth.BasicScheme",
+  "condition": {
+    "typeReachable": "org.elasticsearch.client.RestClient"
+  },
+  "methods": [
+    {
+      "name": "<init>",
+      "parameterTypes": []
+    }
+  ]
+},
+  {
+    "name": "[Lorg.apache.http.HttpHost;",
+    "condition": {
+      "typeReachable": "org.elasticsearch.client.RestClient"
+    }
+  }
+]

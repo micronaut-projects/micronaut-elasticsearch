@@ -12,19 +12,9 @@ dependencies {
     // tag::testcontainers-dependencies[]
     testImplementation(libs.testcontainers.elasticsearch)
     // end::testcontainers-dependencies[]
-
+    testImplementation(libs.apache.http.client)
+    testImplementation(libs.apache.http.async.client)
     testImplementation(projects.micronautElasticsearch)
     testRuntimeOnly(mn.logback.classic)
 }
 
-tasks {
-    named<Test>("test") {
-        useJUnitPlatform()
-        systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
-    }
-}
-
-java {
-    sourceCompatibility = JavaVersion.toVersion("17")
-    targetCompatibility = JavaVersion.toVersion("17")
-}
