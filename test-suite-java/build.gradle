@@ -23,12 +23,13 @@ configurations.all {
 
 dependencies {
     annotationProcessor "io.micronaut.validation:micronaut-validation-processor"
-    implementation "io.micronaut:micronaut-context"
-    implementation "io.micronaut:micronaut-jackson-databind"
+    implementation mn.micronaut.context
+    implementation mn.micronaut.jackson.databind
     implementation "io.micronaut.validation:micronaut-validation"
+    testImplementation libs.awaitility
     implementation project(":micronaut-elasticsearch")
-    implementation "org.yaml:snakeyaml"
-    runtimeOnly "ch.qos.logback:logback-classic"
+    implementation mn.snakeyaml
+    runtimeOnly mn.logback.classic
 }
 micronaut {
     testResources {
