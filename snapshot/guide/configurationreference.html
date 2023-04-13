@@ -46,11 +46,11 @@
         <div class="docs-content">
             <div class="project">
                 <h1>Configuration Reference</h1>
-                <p><strong>Version:</strong>4.4.1-SNAPSHOT</p>
+                <p><strong>Version:</strong>5.0.0-SNAPSHOT</p>
                 <p></p>
             </div>
 <div class="sect2">
-<h3 id="_elasticsearch_config_properties">Elasticsearch Config Properties</h3>
+<h3 id="_micronaut_elasticsearch_config_properties">Micronaut Elasticsearch Config Properties</h3>
 <a id="io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties" href="#io.micronaut.elasticsearch.DefaultElasticsearchConfigurationProperties">&#128279;</a>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Configuration Properties for <a href="../api/io/micronaut/elasticsearch/DefaultElasticsearchConfigurationProperties.html">DefaultElasticsearchConfigurationProperties</a></caption>
@@ -67,6 +67,26 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.http-hosts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.http.HttpHost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or more hosts that client will connect to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.default-headers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.http.Header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The defaults {@link Header} to sent with each request.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.max-retry-timeout-millis</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum retry timeout in millis.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.node-selector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.elasticsearch.client.NodeSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The {@link NodeSelector} to be used, in case of multiple nodes.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.request.default.expect-continue-enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
@@ -148,24 +168,9 @@
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.max-retry-timeout-millis</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum retry timeout in millis.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.node-selector</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.elasticsearch.client.NodeSelector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The {@link NodeSelector} to be used, in case of multiple nodes.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.http-hosts</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.http.HttpHost[]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One or more hosts that client will connect to.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.default-headers</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.http.Header[]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The defaults {@link Header} to sent with each request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticsearch.http-async-client-builder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.apache.http.impl.nio.client.HttpAsyncClientBuilder</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
