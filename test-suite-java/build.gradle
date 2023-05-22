@@ -6,7 +6,8 @@ plugins {
 
 mainClassName = "micronaut.example.Application"
 micronaut {
-    version "4.0.0-SNAPSHOT"
+    version libs.versions.micronaut.platform.get()
+    coreVersion.set(libs.versions.micronaut.asProvider().get())
     testRuntime "junit5"
     enableNativeImage false
     processing {
@@ -29,7 +30,7 @@ dependencies {
     testImplementation libs.awaitility
     implementation project(":micronaut-elasticsearch")
     implementation mn.snakeyaml
-    runtimeOnly mn.logback.classic
+    runtimeOnly mnLogging.logback.classic
 }
 micronaut {
     testResources {
