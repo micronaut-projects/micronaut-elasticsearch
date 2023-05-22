@@ -15,6 +15,6 @@ dependencies {
     testImplementation(libs.apache.http.client)
     testImplementation(libs.apache.http.async.client)
     testImplementation(projects.micronautElasticsearch)
-    testRuntimeOnly(mn.logback.classic)
+    testRuntimeOnly(mnLogging.logback.classic)
 }
 
