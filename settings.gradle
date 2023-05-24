@@ -19,7 +19,6 @@ include 'test-suite-java'
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
 
 micronautBuild {
-    addSnapshotRepository()
     useStandardizedProjectNames = true
     importMicronautCatalog()
     importMicronautCatalog("micronaut-security")
