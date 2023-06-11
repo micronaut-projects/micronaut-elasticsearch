@@ -1,7 +1,7 @@
 plugins {
-    id 'io.micronaut.application'
-    id 'io.micronaut.test-resources'
-    id 'io.micronaut.build.internal.elasticsearch-native-tests'
+    id("io.micronaut.application")
+    id("io.micronaut.test-resources")
+    id("io.micronaut.build.internal.elasticsearch-native-tests")
 }
 
 mainClassName = "micronaut.example.Application"
@@ -23,14 +23,14 @@ configurations.all {
 }
 
 dependencies {
-    annotationProcessor "io.micronaut.validation:micronaut-validation-processor"
-    implementation mn.micronaut.context
-    implementation mn.micronaut.jackson.databind
-    implementation "io.micronaut.validation:micronaut-validation"
-    testImplementation libs.awaitility
-    implementation project(":micronaut-elasticsearch")
-    implementation mn.snakeyaml
-    runtimeOnly mnLogging.logback.classic
+    annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    implementation(mn.micronaut.context)
+    implementation(mn.micronaut.jackson.databind)
+    implementation("io.micronaut.validation:micronaut-validation")
+    testImplementation(libs.awaitility)
+    implementation(project(":micronaut-elasticsearch"))
+    implementation(mn.snakeyaml)
+    runtimeOnly(mnLogging.logback.classic)
 }
 micronaut {
     testResources {
