@@ -9,7 +9,7 @@ micronaut-gradle-plugin = "4.0.0-M4"
 managed-elasticsearch = "8.8.0"
 
 graal-svm = "22.3.2"
-groovy = "4.0.11"
+groovy = "4.0.12"
 spock = "2.3-groovy-4.0"
 testcontainers = "1.18.3"
 slf4j = "2.0.7"
