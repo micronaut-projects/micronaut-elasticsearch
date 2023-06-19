@@ -6,7 +6,7 @@ micronaut-security = "4.0.0-M6"
 micronaut-logging = "1.0.0-M5"
 micronaut-test = "4.0.0-M7"
 micronaut-gradle-plugin = "4.0.0-M4"
-managed-elasticsearch = "8.8.0"
+managed-elasticsearch = "8.8.1"
 
 graal-svm = "23.0.0"
 groovy = "4.0.12"
