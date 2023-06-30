@@ -33,6 +33,7 @@ tasks {
 
 micronautBuild {
     binaryCompatibility {
-        enabled.set(false)
+        enabled.set(true)
+        baselineVersion.set("5.0.0-M6")
     }
 }
