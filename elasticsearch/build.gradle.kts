@@ -30,10 +30,3 @@ tasks {
         systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
     }
 }
-
-micronautBuild {
-    binaryCompatibility {
-        enabled.set(true)
-        baselineVersion.set("5.0.0-M6")
-    }
-}
