@@ -12,10 +12,6 @@ See the [Documentation](https://micronaut-projects.github.io/micronaut-elasticse
 
 See the [Snapshot Documentation](https://micronaut-projects.github.io/micronaut-elasticsearch/snapshot/guide/) for the current development docs.
 
-## Examples
-
-Examples can be found in the [examples](https://github.com/micronaut-projects/micronaut-elasticsearch/tree/master/examples) directory.
-
 ## Snapshots and Releases
 
 Snapshots are automatically published to [Sonatype Snapshots](https://s01.oss.sonatype.org/content/repositories/snapshots/io/micronaut/) using [Github Actions](https://github.com/micronaut-projects/micronaut-elasticsearch/actions).
