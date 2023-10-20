@@ -9,7 +9,7 @@ micronaut-gradle-plugin = "4.0.3"
 managed-elasticsearch = "8.8.2"
 
 graal-svm = "23.0.0"
-groovy = "4.0.13"
+groovy = "4.0.15"
 spock = "2.3-groovy-4.0"
 testcontainers = "1.18.3"
 slf4j = "2.0.7"
@@ -21,7 +21,6 @@ apache-http-async-client = "4.1.5"
 # Core
 micronaut-core = { module = 'io.micronaut:micronaut-core-bom', version.ref = 'micronaut' }
 
-micronaut-logging = { module = "io.micronaut.logging:micronaut-logging-bom", version.ref = "micronaut-logging" }
 micronaut-security = { module = "io.micronaut.security:micronaut-security-bom", version.ref = "micronaut-security" }
 jcl-over-slf4j = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
