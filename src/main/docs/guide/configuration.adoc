@@ -25,7 +25,7 @@ elasticsearch:
   httpHosts: "http://localhost:9200,http://127.0.0.2:9200"
 ----
 
-See the API for api:configuration.elasticsearch.DefaultElasticsearchConfigurationProperties[] for more information on the available configuration options.
+See the API for api:.elasticsearch.DefaultElasticsearchConfigurationProperties[] for more information on the available configuration options.
 
 Once you have the above configuration in place then you can inject the `co.elastic.clients.elasticsearch.ElasticsearchClient`, the `co.elastic.clients.elasticsearch.ElasticsearchAsyncClient` or the `org.elasticsearch.client.RestClient` bean. The following is the simplest way to get Elasticsearch information using the ElasticsearchClient:
 
@@ -53,11 +53,11 @@ elasticsearch:
       localAddress: 198.57.151.22
 ----
 
-See the API https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html[RequestConfig.Builder^] for more information on the available configuration options.
+See the API https://hc.apache.org/httpcomponents-client-5.2.x/current/httpclient5/apidocs/org/apache/hc/client5/http/config/RequestConfig.Builder.html[RequestConfig.Builder^] for more information on the available configuration options.
 
 == Modify the HTTP Client Configurations
 
-To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the http://hc.apache.org/httpcomponents-asyncclient-dev/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html[HttpAsyncClientBuilder^] allows to set). You can define a bean using https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Factory.html[Factory] which replaces `org.apache.http.impl.nio.client.HttpAsyncClientBuilder`.
+To modify the HTTP Client configurations (e.g. request timeouts, authentication, or anything that the https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/org/apache/hc/client5/http/impl/async/HttpAsyncClientBuilder.html[HttpAsyncClientBuilder^] allows to set). You can define a bean using https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Factory.html[Factory] which replaces `org.apache.http.impl.nio.client.HttpAsyncClientBuilder`.
 
 Following is an example to change the default credentials provider:
 
