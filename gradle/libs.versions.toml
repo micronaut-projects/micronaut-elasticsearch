@@ -5,13 +5,13 @@ micronaut-platform = "4.0.0-RC1"
 micronaut-security = "4.5.0"
 micronaut-logging = "1.0.0"
 micronaut-test = "4.0.0"
+micronaut-test-resources="2.3.2"
 micronaut-gradle-plugin = "4.2.1"
 managed-elasticsearch = "8.12.0"
 
 graal-svm = "23.1.2"
 groovy = "4.0.15"
 spock = "2.3-groovy-4.0"
-testcontainers = "1.19.3"
 slf4j = "2.0.11"
 awaitility = "4.2.0"
 apache-http-client = "4.5.14"
@@ -22,6 +22,8 @@ apache-http-async-client = "4.1.5"
 micronaut-core = { module = 'io.micronaut:micronaut-core-bom', version.ref = 'micronaut' }
 
 micronaut-security = { module = "io.micronaut.security:micronaut-security-bom", version.ref = "micronaut-security" }
+micronaut-test-resources = { module = "io.micronaut.testresources:micronaut-test-resources-bom", version.ref = "micronaut-test-resources" }
+
 jcl-over-slf4j = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 managed-elasticsearch-java = { module = "co.elastic.clients:elasticsearch-java", version.ref = "managed-elasticsearch" }
 managed-elasticsearch-rest-client = { module = "org.elasticsearch.client:elasticsearch-rest-client", version.ref = "managed-elasticsearch" }
@@ -29,6 +31,5 @@ apache-http-client = { module = "org.apache.httpcomponents:httpclient", version.
 apache-http-async-client = { module = "org.apache.httpcomponents:httpasyncclient", version.ref = "apache-http-async-client" }
 graal-svm = { module = "org.graalvm.nativeimage:svm", version.ref = "graal-svm" }
 
-testcontainers-elasticsearch = { module = "org.testcontainers:elasticsearch", version.ref = "testcontainers"  }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
