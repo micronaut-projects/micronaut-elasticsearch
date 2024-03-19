@@ -9,7 +9,7 @@ micronaut-test-resources="2.3.3"
 micronaut-gradle-plugin = "4.3.4"
 managed-elasticsearch = "8.12.2"
 
-graal-svm = "23.1.2"
+graal-svm = "24.0.0"
 groovy = "4.0.15"
 spock = "2.3-groovy-4.0"
 awaitility = "4.2.0"
