@@ -15,6 +15,7 @@ spock = "2.3-groovy-4.0"
 awaitility = "4.2.2"
 apache-http-client = "4.5.14"
 apache-http-async-client = "4.1.5"
+sonatype-scan = "3.0.0"
 
 [libraries]
 # Core
@@ -31,3 +32,4 @@ graal-svm = { module = "org.graalvm.nativeimage:svm", version.ref = "graal-svm" 
 
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
+sonatype-scan = { module = "org.sonatype.gradle.plugins:scan-gradle-plugin", version.ref = "sonatype-scan" }
