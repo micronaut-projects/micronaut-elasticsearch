@@ -1,6 +1,6 @@
 [versions]
 micronaut-docs = "2.0.0"
-micronaut = "4.8.16"
+micronaut = "4.8.18"
 micronaut-platform = "4.5.1"
 micronaut-security = "4.12.1"
 micronaut-logging = "1.4.0"
