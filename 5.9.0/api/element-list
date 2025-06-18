@@ -1,0 +1,4 @@
+io.micronaut.elasticsearch
+io.micronaut.elasticsearch.conditon
+io.micronaut.elasticsearch.convert
+io.micronaut.elasticsearch.health
