@@ -1,5 +1,6 @@
 plugins {
     id "io.micronaut.build.internal.elasticsearch-base"
+    id "java-library"
 }
 
 tasks.named("test") {
@@ -10,4 +11,12 @@ tasks.named("test") {
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
     targetCompatibility = JavaVersion.toVersion("21")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
