@@ -1,19 +1,8 @@
 plugins {
     id "io.micronaut.build.internal.elasticsearch-base"
-    id "java-library"
-    id "io.micronaut.build.internal.java-base"
 }
 
 tasks.named("test") {
     useJUnitPlatform()
     systemProperty("elasticsearch.version", libs.versions.managed.elasticsearch.get())
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testRuntimeOnly(mnTest.junit.platform.launcher)
-    testRuntimeOnly(mnTest.junit.jupiter.engine)
 }

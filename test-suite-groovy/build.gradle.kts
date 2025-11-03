@@ -16,5 +16,6 @@ dependencies {
     testImplementation(libs.apache.http.async.client)
     testImplementation(projects.micronautElasticsearch)
     testRuntimeOnly(mnLogging.logback.classic)
+    testRuntimeOnly(mnTest.junit.platform.launcher)
 }
 
