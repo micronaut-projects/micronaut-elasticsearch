@@ -8,3 +8,4 @@ test-resources:
   containers:
     elasticsearch:
       startup-timeout: 300s
+      image-name: docker.elastic.co/elasticsearch/elasticsearch:9.2.1
