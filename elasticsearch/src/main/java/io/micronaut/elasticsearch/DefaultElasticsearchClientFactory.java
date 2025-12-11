@@ -15,13 +15,14 @@
  */
 package io.micronaut.elasticsearch;
 
+import co.elastic.clients.json.jackson.Jackson3JsonpMapper;
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.ArrayUtils;
 import jakarta.inject.Singleton;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
@@ -74,16 +75,16 @@ public class DefaultElasticsearchClientFactory {
 
     /**
      * @param elasticsearchConfiguration The {@link DefaultElasticsearchConfigurationProperties} object.
-     * @param objectMapper The {@link ObjectMapper} object.
+     * @param jsonMapper The {@link JsonMapper} object.
      * @return The {@link ElasticsearchTransport}.
      * @since 4.2.0
      */
     @Singleton
     @Bean(preDestroy = "close")
-    ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, ObjectMapper objectMapper) {
+    ElasticsearchTransport elasticsearchTransport(DefaultElasticsearchConfigurationProperties elasticsearchConfiguration, JsonMapper jsonMapper) {
         RestClient restClient = restClientBuilder(elasticsearchConfiguration).build();
 
-        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new Jackson3JsonpMapper(jsonMapper));
         return transport;
     }
 
