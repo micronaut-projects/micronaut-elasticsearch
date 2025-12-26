@@ -16,5 +16,7 @@ dependencies {
     testImplementation(projects.micronautElasticsearch)
     testRuntimeOnly(mnLogging.logback.classic)
     testRuntimeOnly(mnTest.junit.platform.launcher)
+    implementation(platform(mnTest.boms.testcontainers))
+    implementation(libs.testcontainers.elasticsearch)
 }
 

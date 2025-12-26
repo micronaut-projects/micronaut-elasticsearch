@@ -21,6 +21,8 @@ dependencies {
     testImplementation(mn.groovy.json)
     testImplementation(mnSecurity.micronaut.security)
     testImplementation(mn.reactor)
+    implementation(platform(mnTest.boms.testcontainers))
+    implementation(libs.testcontainers.elasticsearch)
 }
 
 
