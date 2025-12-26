@@ -30,9 +30,5 @@ dependencies {
     implementation(project(":micronaut-elasticsearch"))
     implementation(mn.snakeyaml)
     runtimeOnly(mnLogging.logback.classic)
-}
-micronaut {
-    testResources {
-        clientTimeout = 300
-    }
+
 }

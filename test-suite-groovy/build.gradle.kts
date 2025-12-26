@@ -10,7 +10,6 @@ dependencies {
     testImplementation(mnTest.micronaut.test.spock)
 
     // tag::testcontainers-dependencies[]
-    testImplementation(mnTestResources.testcontainers.elasticsearch)
     // end::testcontainers-dependencies[]
     testImplementation(libs.apache.http.client)
     testImplementation(libs.apache.http.async.client)

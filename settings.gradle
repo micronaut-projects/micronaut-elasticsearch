@@ -22,5 +22,4 @@ micronautBuild {
     useStandardizedProjectNames = true
     importMicronautCatalog()
     importMicronautCatalog("micronaut-security")
-    importMicronautCatalog("micronaut-test-resources")
 }
