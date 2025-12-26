@@ -1,6 +1,5 @@
 plugins {
     id("io.micronaut.application")
-    id("io.micronaut.test-resources")
     id("io.micronaut.build.internal.elasticsearch-native-tests")
 }
 
@@ -29,6 +28,7 @@ dependencies {
     testImplementation(libs.awaitility)
     implementation(project(":micronaut-elasticsearch"))
     implementation(mn.snakeyaml)
+    testImplementation(project(":test-suite-utils"))
     runtimeOnly(mnLogging.logback.classic)
 
 }

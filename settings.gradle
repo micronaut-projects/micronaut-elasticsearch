@@ -15,6 +15,7 @@ include 'elasticsearch-bom'
 include 'elasticsearch'
 include 'test-suite-groovy'
 include 'test-suite-java'
+include 'test-suite-utils'
 
 enableFeaturePreview 'TYPESAFE_PROJECT_ACCESSORS'
 

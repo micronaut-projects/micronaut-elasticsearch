@@ -1,5 +1,6 @@
 [versions]
-micronaut = "5.0.0-M2"
+micronaut = "5.0.0-M6"
+micronaut-test = "5.0.0-M2"
 micronaut-platform = "4.10.1"
 micronaut-security = "4.16.0"
 micronaut-gradle-plugin = "4.6.1"
@@ -21,6 +22,6 @@ managed-elasticsearch-rest-client = { module = "org.elasticsearch.client:elastic
 apache-http-client = { module = "org.apache.httpcomponents:httpclient", version.ref = "apache-http-client" }
 apache-http-async-client = { module = "org.apache.httpcomponents:httpasyncclient", version.ref = "apache-http-async-client" }
 graal-svm = { module = "org.graalvm.nativeimage:svm", version.ref = "graal-svm" }
-
+testcontainers-elasticsearch = { module = "org.testcontainers:testcontainers-elasticsearch" }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 gradle-micronaut = { module = "io.micronaut.gradle:micronaut-gradle-plugin", version.ref = "micronaut-gradle-plugin" }
