@@ -9,11 +9,13 @@ import micronaut.example.service.MovieService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 
 import java.util.Map;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 
+@DisabledInNativeImage
 @MicronautTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ElasticSearchTest implements TestPropertyProvider {
