@@ -21,10 +21,10 @@ configurations.all {
 }
 
 dependencies {
-    annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    annotationProcessor(mnValidation.micronaut.validation.processor)
     implementation(mn.micronaut.context)
     implementation(mn.micronaut.jackson.databind)
-    implementation("io.micronaut.validation:micronaut-validation")
+    implementation(mnValidation.micronaut.validation)
     testImplementation(libs.awaitility)
     implementation(project(":micronaut-elasticsearch"))
     implementation(mn.snakeyaml)
