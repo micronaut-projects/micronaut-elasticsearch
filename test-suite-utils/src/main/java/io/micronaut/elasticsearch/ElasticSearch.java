@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ElasticSearch {
 
-    private static final String IMAGE_NAME = "docker.elastic.co/elasticsearch/elasticsearch:9.2.1";
+    private static final String IMAGE_NAME = "docker.elastic.co/elasticsearch/elasticsearch:9.2.3";
     private static ElasticsearchContainer container;
 
     public static Map<String, String> getProperties() {
