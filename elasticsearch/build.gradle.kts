@@ -18,10 +18,11 @@ dependencies {
 
     implementation(mn.micronaut.jackson.databind)
 
-    testImplementation(mnTestResources.testcontainers.elasticsearch)
     testImplementation(mn.groovy.json)
     testImplementation(mnSecurity.micronaut.security)
     testImplementation(mn.reactor)
+    testImplementation(platform(mnTest.boms.testcontainers))
+    testImplementation(libs.testcontainers.elasticsearch)
 }
 
 

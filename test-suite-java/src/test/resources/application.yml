@@ -4,7 +4,3 @@ micronaut:
 elasticsearch:
   indexes:
     movies: micronaut.movies
-test-resources:
-  containers:
-    elasticsearch:
-      startup-timeout: 300s
