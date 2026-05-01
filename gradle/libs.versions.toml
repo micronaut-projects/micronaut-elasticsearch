@@ -9,7 +9,7 @@ micronaut-validation = "5.0.0-M2"
 micronaut-gradle-plugin = "4.6.2"
 managed-elasticsearch = "9.3.0"
 
-graal-svm = "25.0.2"
+graal-svm = "25.0.3"
 awaitility = "4.3.0"
 apache-http-client = "4.5.14"
 apache-http-async-client = "4.1.5"
