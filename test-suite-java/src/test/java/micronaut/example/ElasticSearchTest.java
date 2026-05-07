@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.Map;
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.awaitility.Awaitility.await;
 
 @MicronautTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -27,10 +25,8 @@ class ElasticSearchTest implements TestPropertyProvider {
     void testElasticSearch(MovieService movieService) {
         String title = "Die Hard";
         movieService.saveMovie(new Movie("KJFDOD", title));
-        await().atMost(10, SECONDS).until(() ->
-            movieService.searchMovies(title) != null
-        );
         Movie result = movieService.searchMovies(title);
         Assertions.assertNotNull(result);
+        Assertions.assertEquals(title, result.getTitle());
     }
 }
