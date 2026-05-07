@@ -2,6 +2,7 @@ package micronaut.example.service;
 
 import java.util.Iterator;
 
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
@@ -32,6 +33,7 @@ public class MovieServiceImpl implements MovieService {
         try {
             IndexRequest<Movie> indexRequest = new IndexRequest.Builder<Movie>()
                 .index(moviesIndex)
+                .refresh(Refresh.True)
                 .document(movie)
                 .build();
 

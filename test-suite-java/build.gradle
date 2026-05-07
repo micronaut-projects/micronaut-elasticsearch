@@ -25,7 +25,6 @@ dependencies {
     implementation(mn.micronaut.context)
     implementation(mn.micronaut.jackson.databind)
     implementation(mnValidation.micronaut.validation)
-    testImplementation(libs.awaitility)
     implementation(project(":micronaut-elasticsearch"))
     implementation(mn.snakeyaml)
     testImplementation(project(":test-suite-utils"))
