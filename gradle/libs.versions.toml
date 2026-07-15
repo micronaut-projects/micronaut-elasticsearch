@@ -1,6 +1,6 @@
 [versions]
 micronaut = "5.1.6"
-micronaut-platform = "5.0.4"
+micronaut-platform = "5.0.5"
 micronaut-security = "5.3.1"
 micronaut-logging = "2.0.0"
 micronaut-test = "5.0.0"
