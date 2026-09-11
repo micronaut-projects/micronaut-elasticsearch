@@ -23,6 +23,24 @@ dependencies {
     testImplementation(mn.reactor)
     testImplementation(platform(mnTest.boms.testcontainers))
     testImplementation(libs.testcontainers.elasticsearch)
+
+    constraints {
+        api(libs.apache.httpclient5) {
+            because("GHSA-hjcp-jmpx-g3qm: elasticsearch-rest5-client brings httpclient5 5.6.1")
+        }
+        api(libs.apache.httpcore5) {
+            because("GHSA-hf6x-8p5f-cgmf: elasticsearch-rest5-client brings httpcore5 5.4")
+        }
+        api(libs.apache.httpcore5.h2) {
+            because("GHSA-v3jc-474w-2wm6: elasticsearch-rest5-client brings httpcore5-h2 5.4")
+        }
+        api(libs.jackson2.core) {
+            because("Keep jackson-core aligned with jackson-databind")
+        }
+        api(libs.jackson2.databind) {
+            because("GHSA-5gvw-p9qm-jgwh: elasticsearch-java brings jackson-databind 2.22.0")
+        }
+    }
 }
 
 
