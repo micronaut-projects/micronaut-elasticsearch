@@ -40,6 +40,9 @@ dependencies {
         api(libs.jackson2.databind) {
             because("GHSA-5gvw-p9qm-jgwh: elasticsearch-java brings jackson-databind 2.22.0")
         }
+        api(libs.opentelemetry.api) {
+            because("GHSA-ccrj-gw8r-854m: elasticsearch-java brings opentelemetry-api 1.63.0")
+        }
     }
 }
 
